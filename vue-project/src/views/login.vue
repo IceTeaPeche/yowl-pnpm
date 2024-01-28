@@ -1,281 +1,68 @@
 <template>
-<<<<<<< Updated upstream
-    <div class="login-container">
-        
-        <form class="login-form">
-            <input type="text" class="input-field" placeholder="Pseudo" required>
-            <div class="password-container">
-                <input :type="passwordFieldType" class="input-field" placeholder="Password" required>
-                <button type="button" @click="togglePasswordVisibility">
-                    <img :src="passwordIcon" alt="Toggle visibility">
-                </button>
-            </div>
-            
-            <button class="login-button" type="submit">Login</button>
-          
-        </form>
-    </div>
-</template>
-<script>
-export default {
-    data() {
-        return {
-            passwordFieldType: 'password',
-            passwordIcon: './path/to/eye-closed-icon.png'
-        }
-    },
-    methods: {
-        togglePasswordVisibility() {
-            if (this.passwordFieldType === 'password') {
-                this.passwordFieldType = 'text';
-                this.passwordIcon = './path/to/eye-open-icon.png';
-            } else {
-                this.passwordFieldType = 'password';
-                this.passwordIcon = './path/to/eye-closed-icon.png';
-            }
-        }
-    }
-=======
-        <div class="login-container">
+        <div class="flex flex-col justify-center items-center h-screen  relative">
+                <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Logofinal.svg" alt="Logo"
+                       class="absolute top-24 left-1/2 transform -translate-x-1/2 w-[200px] z-2">
 
-                <form class="login-form">
-                        <input type="text" class="input-field" placeholder="Pseudo" required>
-                        <div class="password-container">
-                                <input :type="passwordFieldType" class="input-field" placeholder="Password" required>
-                                <button type="button" @click="togglePasswordVisibility">
-                                        <img :src="passwordIcon" alt="Toggle visibility">
-                                </button>
+
+                <form class="flex flex-col w-full max-w-xs gap-7 mt-[160px]">
+
+                        <input type="text" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Pseudo"
+                                required>
+
+                        <div class="relative flex">
+
+                                <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2"
+                                       id="password" type="password" placeholder="Password" for required>
+
+                        
+                        </div>
+                        <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto transform transition-transform duration-300 ease-in-out font-bold mt-10 pt-2 pb-2"
+                                type="submit" @click="$router.push('/home')">Login</button>
+                </form>
+
+
+                  <div class="flex items-center justify-between mt-6 mb-6">
+                
+                        <div class="barre bg-gray-100 w-20 mr-2 rounded"></div>
+
+                <span class="text-white">or</span>
+                
+                        <div class="barre bg-gray-100 w-20 ml-2 rounded"></div>
+
+                 </div>
+
+
+        <button>
+                <div class="w-[210px] h-8 px-5 py-1 rounded-[10px] border border-zinc-300 flex-col justify-start items-start gap-2.5 inline-flex">
+        <div class="justify-start items-center gap-2.5 inline-flex">
+        
+
+        <img class="ml-3.5"  src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/icons8-google 1.svg" alt="">
+
+        <div class="text-white text-xs font-medium font-['Poppins']">Sign in with Google</div>
+        </div>
+        </div>
+        </button>
+
+        <div class="mt-14 ">
+                                <a href="/register" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">Not Registered ? Create an account!</a>
                         </div>
 
-                        <button class="login-button" type="submit">Login</button>
-
-                </form>
         </div>
+
+        
+
+        
 </template>
+
 <script>
-export default {
-        data() {
-                return {
-                        passwordFieldType: 'password',
-                        passwordIcon: './path/to/eye-closed-icon.png'
-                }
-        },
-        methods: {
-                togglePasswordVisibility() {
-                        if (this.passwordFieldType === 'password') {
-                                this.passwordFieldType = 'text';
-                                this.passwordIcon = './path/to/eye-open-icon.png';
-                        } else {
-                                this.passwordFieldType = 'password';
-                                this.passwordIcon = './path/to/eye-closed-icon.png';
-                        }
-                }
-        }
->>>>>>> Stashed changes
-}
+
 </script>
+
 <style scoped>
-.login-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        padding: 20px;
-        /* Ajoute un peu d'espace autour du conteneur sur les petits écrans */
-}
 
-<<<<<<< Updated upstream
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px; /* Ajoute un peu d'espace autour du conteneur sur les petits écrans */
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Fait en sorte que le formulaire prenne toute la largeur sur les petits écrans */
-    max-width: 300px; /* Mais ne dépasse pas 300px sur les grands écrans */
-    gap: 20px;
-}
-
-.input-field {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    color: white; /* Change la couleur du texte saisi par l'utilisateur en blanc */
-}
-.input-field::placeholder {
-    color: white; /* Change la couleur du texte du placeholder en blanc */
-}
-/* Media query pour les écrans de plus de 600px de large */
-@media (min-width: 600px) {
-    .login-form {
-        width: 300px; /* Rétablit la largeur du formulaire à 300px sur les grands écrans */
-    }
-}
-.login-button {
-    padding: 10px;
-    border: none;
-    border-radius: 20px; /* Augmente le rayon des bords arrondis */
-    background-color: red;
-    color: white;
-    cursor: pointer;
-    width: 80%; /* Fait en sorte que le bouton soit moins large que les champs de saisie */
-    margin: 0 auto; /* Centre le bouton */
-    transition: transform 0.3s ease; /* Ajoute une transition pour l'effet de clic */
-    font-weight: bold; /* Rend le texte du bouton en gras */
-}
-.login-button:active {
-    transform: scale(0.9); /* Réduit légèrement la taille du bouton lorsqu'il est cliqué */
-    transition: transform 0.1s; /* Ajoute une transition pour l'effet de clic */
-}
-.input-field::placeholder {
-    font-weight: bold;
-}
-
-.password-container {
-    position: relative;
-}
-
-.password-container button {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-}
-
-.password-container img {
-    width: 20px;
-    height: 20px;
-}
-.password-container {
-    position: relative;
-    display: flex;
-}
-
-.input-field {
-    flex-grow: 1;
-}
-
-.toggle-password {
-    background: none;
-    border: none;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.toggle-password img {
-    width: 20px;
-    height: 20px;
+.barre{
+        height: 1.5px;
 }
 
 </style>
-=======
-.login-form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        /* Fait en sorte que le formulaire prenne toute la largeur sur les petits écrans */
-        max-width: 300px;
-        /* Mais ne dépasse pas 300px sur les grands écrans */
-        gap: 20px;
-}
-
-.input-field {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        color: white;
-        /* Change la couleur du texte saisi par l'utilisateur en blanc */
-}
-
-.input-field::placeholder {
-        color: white;
-        /* Change la couleur du texte du placeholder en blanc */
-}
-
-/* Media query pour les écrans de plus de 600px de large */
-@media (min-width: 600px) {
-        .login-form {
-                width: 300px;
-                /* Rétablit la largeur du formulaire à 300px sur les grands écrans */
-        }
-}
-
-.login-button {
-        padding: 10px;
-        border: none;
-        border-radius: 20px;
-        /* Augmente le rayon des bords arrondis */
-        background-color: red;
-        color: white;
-        cursor: pointer;
-        width: 80%;
-        /* Fait en sorte que le bouton soit moins large que les champs de saisie */
-        margin: 0 auto;
-        /* Centre le bouton */
-        transition: transform 0.3s ease;
-        /* Ajoute une transition pour l'effet de clic */
-        font-weight: bold;
-        /* Rend le texte du bouton en gras */
-}
-
-.login-button:active {
-        transform: scale(0.9);
-        /* Réduit légèrement la taille du bouton lorsqu'il est cliqué */
-        transition: transform 0.1s;
-        /* Ajoute une transition pour l'effet de clic */
-}
-
-.input-field::placeholder {
-        font-weight: bold;
-}
-
-.password-container {
-        position: relative;
-}
-
-.password-container button {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-}
-
-.password-container img {
-        width: 20px;
-        height: 20px;
-}
-
-.password-container {
-        position: relative;
-        display: flex;
-}
-
-.input-field {
-        flex-grow: 1;
-}
-
-.toggle-password {
-        background: none;
-        border: none;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-}
-
-.toggle-password img {
-        width: 20px;
-        height: 20px;
-}</style>
->>>>>>> Stashed changes

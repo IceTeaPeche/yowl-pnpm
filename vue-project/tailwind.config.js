@@ -3,11 +3,15 @@ module.exports = {
    purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'custom-gray': '#1D1D1B',
+        'custom-gray-2': '#494949',
+      },
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
 }
-
