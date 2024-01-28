@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "snickers",
+  "info": {
+    "singularName": "snicker",
+    "pluralName": "snickers",
+    "displayName": "snicker",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brand": {
+      "type": "string"
+    },
+    "colorway": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "links": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string"
+    },
+    "silhouette": {
+      "type": "string"
+    },
+    "retailPrice": {
+      "type": "float"
+    },
+    "estimatedMarketValue": {
+      "type": "float"
+    },
+    "image": {
+      "type": "json"
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "snickers"
+    },
+    "wishlist": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "snickerss"
+    }
+  }
+}

@@ -126,39 +126,34 @@ export default {
         },
 
 
-         async registerUser() {
-            console.log('tes dans la fonction registerUser batard');
+            registerUser() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
-
-         try {
-                const response = await axios.post('http://localhost:1337/api/auth/local/register', {
+            fetch('http://localhost:1337/api/auth/local/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     username: username,
-                    email: email,
                     password: password,
-                }, {
-                    timeout: 5000, // Augmente le délai d'attente à 5 secondes
-                    headers: {
-                        'Access-Control-Allow-Origin': '*', // Autorise les requêtes CORS de tous les domaines
-                    },
+                    email: email
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data)
+                    this.$router.push('/login');;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
                 });
-
-                console.log(response.data);
-                this.$router.push('/login');
-            } catch (error) {
-                console.error(error);
-                if (error.response) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-                console.log(error.config);
-            }
         },
     }
 }
