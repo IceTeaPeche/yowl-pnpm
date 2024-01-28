@@ -362,55 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiSnickerSnicker extends Schema.CollectionType {
-  collectionName: 'snickers';
-  info: {
-    singularName: 'snicker';
-    pluralName: 'snickers';
-    displayName: 'snicker';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    brand: Attribute.String;
-    colorway: Attribute.String;
-    gender: Attribute.String;
-    links: Attribute.JSON;
-    name: Attribute.String;
-    silhouette: Attribute.String;
-    retailPrice: Attribute.Float;
-    estimatedMarketValue: Attribute.Float;
-    image: Attribute.JSON;
-    collection: Attribute.Relation<
-      'api::snicker.snicker',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
-    wishlist: Attribute.Relation<
-      'api::snicker.snicker',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::snicker.snicker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::snicker.snicker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -708,17 +659,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    snickers: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::snicker.snicker'
-    >;
-    snickerss: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::snicker.snicker'
-    >;
     avatar: Attribute.Media;
+    birthday: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -746,7 +688,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::snicker.snicker': ApiSnickerSnicker;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

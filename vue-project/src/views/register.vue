@@ -1,54 +1,59 @@
+Taux de chômage est de 3,5 en Juin 2023
+
+
+
 <template>
     <div class="flex flex-col justify-center items-center h-screen  relative">
         <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Logofinal.svg" alt="Logo"
             class="absolute top-24 left-1/2 transform -translate-x-1/2 w-[200px] z-0">
 
 
-        <form class="flex flex-col w-full max-w-xs gap-7 mt-[275px]">
+        <form class="flex flex-col w-full max-w-xs gap-7 mt-[281px]">
 
-            <input type="text" id="username" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2 z-1" placeholder="Username" 
-                required>
+            <input type="text" id="username" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2 z-1"
+                placeholder="Pseudo" required>
 
-            <input type="text" id="birthday" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Birthdate MM/DD/YYYY">
+            <input type="text" id="birthday" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2"
+                placeholder="Birthdate YYYY-MM-DD">
 
-            <input type="text" id="email" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Mail" v-model="email" @input="validateEmail"
-                    required>
-           
+            <input type="text" id="email" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2"
+                placeholder="Mail" v-model="email" @input="validateEmail" required>
+
 
 
 
             <div class="relative flex mb-[-22px]">
 
-                <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2" id="password" v-model="password" @input="validatePassword"
-                    type="password" placeholder="Password" for required>
-                
+                <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2" id="password"
+                    v-model="password" @input="validatePassword" type="password" placeholder="Password" for required>
 
-            
+
+
 
 
             </div>
 
 
-         <div class="flex transform translate-y-2.5">
-        <input class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 "
-            placeholder="do you accept cookies ?" >
+            <div class="flex transform translate-y-2.5">
+                <input class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 "
+                    placeholder="do you accept cookies ?">
 
-        <div class="mr-[51px] mt-[2px]">
-            <button class="border-none rounded-2xl bg-red-500 text-white cursor-pointer pl-1.5 pr-1.5 text-[8px] mr-4 pt-1 pb-1"
-                type="button"  @click="$router.push('/cookie')">Personalize</button>
+                <div class="mr-[51px] mt-[2px]">
+                    <button
+                        class="border-none rounded-2xl bg-red-500 text-white cursor-pointer pl-1.5 pr-1.5 text-[8px] mr-4 pt-1 pb-1"
+                        type="button" @click="$router.push('/cookie')">Personalize</button>
 
-                <button
-            :class="` rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[8px] pt-1 pb-1 border border-red-500  ${isClicked ? 'bg-red-500' : 'bg-grey-500'}`"
-            @click="isClicked = !isClicked"
-            type="submit"
-        >
-            Accept
-        </button>
-        </div>
-    </div>
+                    <button
+                        :class="` rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[8px] pt-1 pb-1 border border-red-500  ${isClicked ? 'bg-red-500' : 'bg-grey-500'}`"
+                        @click="isClicked = !isClicked" type="submit">
+                        Accept
+                    </button>
+                </div>
+            </div>
 
-         <p class="text-white absolute bg-transparent mt-[185px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
-         <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError }}</p>
+            <p class="text-white absolute bg-transparent mt-[185px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
+            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError
+            }}</p>
 
 
 
@@ -56,7 +61,7 @@
 
             <button
                 class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto transform transition-transform duration-300 ease-in-out font-bold mt-10 pt-2 pb-2"
-                type="submit" v-on:click="registerUser" >Register</button>
+                type="button" v-on:click="registerUser">Register</button>
         </form>
 
 
@@ -84,14 +89,15 @@
         </button>
 
         <div class="mt-14 ">
-            <a href="/login" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">You have account ? please click here</a>
+            <a href="/login" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">You have account ?
+                please click here</a>
         </div>
 
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -126,10 +132,12 @@ export default {
         },
 
 
-            registerUser() {
+        registerUser() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
+            const birthday = document.getElementById('birthday').value;
+
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',
                 headers: {
@@ -138,7 +146,8 @@ export default {
                 body: JSON.stringify({
                     username: username,
                     password: password,
-                    email: email
+                    email: email,
+                    birthday: birthday
                 })
             })
                 .then(response => {
@@ -148,13 +157,14 @@ export default {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data)
-                    this.$router.push('/login');;
+                    console.log(data);
+                    this.$router.push('/login');
                 })
-                .catch((error) => {
+               .catch((error) => {
                     console.error('Error:', error);
                 });
         },
+
     }
 }
 

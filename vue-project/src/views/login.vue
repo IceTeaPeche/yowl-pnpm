@@ -6,7 +6,7 @@
 
                 <form class="flex flex-col w-full max-w-xs gap-7 mt-[160px]">
 
-                        <input type="text" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Pseudo"
+                        <input type="text" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Pseudo" id="identifier" 
                                 required>
 
                         <div class="relative flex">
@@ -14,10 +14,14 @@
                                 <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2"
                                        id="password" type="password" placeholder="Password" for required>
 
+                               
+
                         
                         </div>
-                        <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto transform transition-transform duration-300 ease-in-out font-bold mt-10 pt-2 pb-2"
-                                type="submit" @click="$router.push('/home')">Login</button>
+                         <div id="erreur"><p id="erreurlogin" class="erreurlogin text-white absolute ml-8 mt-[-23px]"> </p></div>
+
+                        <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto font-bold mt-10 pt-2 pb-2"
+                                type="button" v-on:click="login">Login</button>
                 </form>
 
 
@@ -56,6 +60,59 @@
 </template>
 
 <script>
+
+
+import axios from 'axios';
+
+export default {
+        data() {
+                return {
+                        identifier: '',
+                        password: '',
+                        errorMessage: '',
+                }
+        },
+                methods: {
+                        login() {
+                                
+                                        const identifier = document.getElementById('identifier').value;
+                                        const password = document.getElementById('password').value;
+                                        axios.post('http://localhost:1337/api/auth/local', {
+                                                identifier: identifier,
+                                                password: password,
+                                        })
+                                                .then(response => {
+                                                        const status = response.status;
+                                                        console.log(status)
+                                                        if (status == 200) {
+                                                                const identifier = response.data.user.username;
+                                                                const userId = response.data.user.id;
+                                                                const userTokens = response.data.jwt;
+                                                                 this.$router.push({
+                                                        path: `/home`
+                                                });
+                                                        }
+                                                })
+                                                .catch(error => {
+                                                        if (error.response) {
+                                                                if (error.response.status === 400) {
+                                                                        document.querySelector("#erreurlogin").innerHTML = "the password or the email is invalid";
+                                                                }
+                                                                if (error.response.status === 429) {
+                                                                        document.querySelector("#erreurlogin").innerHTML = "an error occurred, please try later";
+                                                                }
+                                                        } else {
+                                                                console.error('Error:', error);
+                                                        }
+                                                });
+                                }
+                }
+}
+
+        
+                                                
+                                
+
 
 </script>
 

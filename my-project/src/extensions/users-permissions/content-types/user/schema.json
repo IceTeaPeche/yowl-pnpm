@@ -65,27 +65,20 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "snickers": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::snicker.snicker",
-      "mappedBy": "collection"
-    },
-    "snickerss": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::snicker.snicker",
-      "mappedBy": "wishlist"
-    },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "birthday": {
+      "type": "date",
+      "required": true
     }
   }
 }
