@@ -9,10 +9,16 @@
                         <input type="text" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2" placeholder="Pseudo" id="identifier" 
                                 required>
 
-                        <div class="relative flex">
+                        <div class="relative flex px-2.5 border border-gray-300 rounded-2xl">
 
-                                <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2"
-                                       id="password" type="password" placeholder="Password" for required>
+                                <input class=" text-white flex-grow pt-2 pb-2"
+                                       id="password" :type="showPassword ? 'password' : 'text'"  placeholder="Password" for required>
+                                      
+
+                                 <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
+                                                <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                                                <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
+                                        </div>
 
                                
 
@@ -43,7 +49,7 @@
 
         <img class="ml-3.5"  src="../assets/icons8-google 1.svg" alt="">
 
-        <div class="text-white text-xs font-medium font-['Poppins']">Sign in with Google</div>
+        <div class="text-white text-xs font-medium font-['Poppins']">Login with Google</div>
         </div>
         </div>
         </button>
@@ -70,6 +76,7 @@ export default {
                         identifier: '',
                         password: '',
                         errorMessage: '',
+                        showPassword: true,
                 }
         },
                 methods: {

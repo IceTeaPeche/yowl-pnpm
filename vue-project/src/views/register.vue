@@ -22,12 +22,18 @@ Taux de chômage est de 3,5 en Juin 2023
 
 
 
-            <div class="relative flex mb-[-22px]">
+            <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
 
-                <input class="px-2.5 border border-gray-300 rounded-2xl text-white flex-grow pt-2 pb-2" id="password"
-                    v-model="password" @input="validatePassword" type="password" placeholder="Password" for required>
+               <input class=" text-white flex-grow pt-2 pb-2 rounded-2xl"
+                                           id="password" :type="showPassword ? 'password' : 'text'"  placeholder="Password" for required>
+                                      
 
+                                     <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
+                                                    <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                                                    <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
+                                            </div>
 
+                
 
 
 
@@ -35,8 +41,8 @@ Taux de chômage est de 3,5 en Juin 2023
 
 
             <div class="flex transform translate-y-2.5">
-                <input class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 "
-                    placeholder="do you accept cookies ?">
+                <h2 class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 ">
+                    do you accept cookies ?</h2>
 
                 <div class="mr-[51px] mt-[2px]">
                     <button
@@ -108,6 +114,7 @@ export default {
             email: '',
             emailError: '',
             errorMessage: '',
+            showPassword: true,
         };
     },
     methods: {

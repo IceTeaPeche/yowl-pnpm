@@ -79,6 +79,9 @@
     "birthday": {
       "type": "date",
       "required": true
+    },
+    "bio": {
+      "type": "text"
     }
   }
 }
