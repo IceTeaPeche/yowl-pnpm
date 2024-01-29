@@ -1,6 +1,6 @@
 <template>
 
-    <header class="fixed top-0 w-full">
+    <header class="fixed top-0 w-full z-20">
 
             <nav class="flex items-center justify-between mt-8 ">
 
@@ -34,7 +34,7 @@
 
         <div class="haut"> </div>
         
-        <section>
+        <article   v-for="data in datas" :key="data.id">
 
             <div class="barre bg-gray-500 "></div>
 
@@ -48,13 +48,15 @@
 
             <div class="box-width ml-10 mt-0" > 
 
-                <h2 class="text-white box-width break-words ml-3.5 mt-0  ">sq,dklqjskldjqksndkonzojanfjoeznfjodnsfklsdfkjsiofsndfklsdnfsidofnsoklndfklsndkflsndfoinsdkflnsdlfkqpqqp</h2>
+                <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
 
-                <img class="ml-2" src="../assets/shrek.png" alt="">
+                <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
 
             </div>
 
-            <div class="flex mt-2 ">
+            
+
+            <div class="flex mt-2 mb-3 ">
 
                <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
             <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
@@ -74,16 +76,12 @@
         </div>
              
 
-
             </div>
 
-        </section>
-
-
+        </article>
         
-
-
-        
+<div class="h-[80px]"></div>
+      
 
 
      </body>
@@ -124,6 +122,56 @@
 
 
 <script>
+import axios from 'axios';
+
+export default {
+
+data() {
+        return {
+            datas: [],
+            
+            values: {
+                
+            }
+            
+        };
+    },
+
+
+    methods: {
+        async fetchData() {
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/posts?populate=image`);
+
+                const data = await response.json();
+
+                this.datas = data.data.filter(item => item.attributes);
+
+                console.log(data, "les données ont été récupérées avec succès");
+            } catch (error) {
+                console.error('Une erreur s\'est produite lors de la récupération des données:', error);
+            }
+        },
+           
+
+
+    },
+
+    
+    mounted() {
+        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+        console.log(apiResponse);
+
+        this.fetchData();
+    },
+};
+
+
+
+
+
+
 </script>
 
 <style scoped>

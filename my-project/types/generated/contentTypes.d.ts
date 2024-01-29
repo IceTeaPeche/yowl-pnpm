@@ -368,6 +368,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     singularName: 'post';
     pluralName: 'posts';
     displayName: 'post';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -375,6 +376,7 @@ export interface ApiPostPost extends Schema.CollectionType {
   attributes: {
     description: Attribute.Text;
     image: Attribute.Media;
+    pseudo: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
@@ -701,6 +703,92 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginStrapiGoogleAuthGoogleCredential
+  extends Schema.SingleType {
+  collectionName: 'strapi-google-auth_google-credential';
+  info: {
+    displayName: 'Google Credentials';
+    singularName: 'google-credential';
+    pluralName: 'google-credentials';
+    description: 'Stores google project credentials';
+    tableName: 'google_auth_creds';
+  };
+  options: {
+    privateAttributes: ['id', 'created_at'];
+    populateCreatorFields: true;
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    google_client_id: Attribute.String & Attribute.Required;
+    google_client_secret: Attribute.String & Attribute.Required;
+    google_redirect_url: Attribute.String & Attribute.Required;
+    google_scopes: Attribute.JSON & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-google-auth.google-credential',
+      'oneToOne',
+      'admin::user'
+    >;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-google-auth.google-credential',
+      'oneToOne',
+      'admin::user'
+    >;
+  };
+}
+
+export interface PluginCustomApiCustomApi extends Schema.CollectionType {
+  collectionName: 'custom_apis';
+  info: {
+    singularName: 'custom-api';
+    pluralName: 'custom-apis';
+    displayName: 'Custom API';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'plugin::custom-api.custom-api', 'name'> &
+      Attribute.Required;
+    selectedContentType: Attribute.JSON;
+    structure: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::custom-api.custom-api',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::custom-api.custom-api',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -718,6 +806,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::strapi-google-auth.google-credential': PluginStrapiGoogleAuthGoogleCredential;
+      'plugin::custom-api.custom-api': PluginCustomApiCustomApi;
     }
   }
 }

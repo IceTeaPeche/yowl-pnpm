@@ -8,31 +8,38 @@
         </div>
         
 
-    <div class="flex float-right mb-3  mr-4">
-             <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[100px] mx-auto font-bold mt-5 pt-2 pb-2 text-[15px]  "
-                                        type="submit">Post</button>
-        </div>
+   <form @submit.prevent="onSubmit" class="flex float-right mb-3  mr-4">
+      <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[100px] mx-auto font-bold mt-5 pt-2 pb-2 text-[15px]"
+        type="submit">Post</button>
+    </form>
         
          <div class="mt-[100px] ml-12">
-            <textarea
+            <textarea  id="description" v-model="values.description"
                 class=" bg-custom-gray h-[100px] text-m text-white rounded-2xl 
         w-4/5 ml-4  pl-4 pr-4 mr-4 pb-4 resize-none pt-2"
-                id="posttext"
+                
                 placeholder="Add text ..."
             ></textarea>
         </div>
 
-           <div class="ml-[69px] mt-1 ">
-            <img v-if="showShrek" src="../assets/shrek.png"  width="297" alt="">
-            <button @click="showShrek = false">
-                <img class="absolute top-0 right-0 mr-[68px] mt-[280px] w-8 h-8 bg-transparent " src="../assets/Group 37.svg" alt="">
-            </button> 
-        </div>
+      <div v-if="imageSrc" class="ml-[69px] mt-1 ">
+        <img :src="imageSrc" alt="Uploaded Image" width="297" >
 
-     
-       <div class="ml-[75px] mt-1 transform -translate-y-5">
-            <button><img height="" width="33" src="../assets/ajoutimage.svg" alt=""></button>
-        </div>
+
+           <button @click="removeImage">
+          <img class="absolute top-0 right-0 mr-[68px] mt-[280px] w-8 h-8 bg-transparent " src="../assets/Group 37.svg" alt="">
+        </button> 
+      </div>
+
+
+    <div class="ml-[75px] mt-6 transform -translate-y-5 bg-transparent">
+        <label for="fileUpload">
+          <img height="" width="33" src="../assets/ajoutimage.svg" alt="">
+        </label>
+        <input type="file" id="fileUpload" @change="onFileChange" style="display: none;">
+      </div>
+
+
          <div class="flex items-center justify-center ml-[70px]">
 
             <div class="mr-[65px] mt-[15px] flex">
@@ -57,21 +64,100 @@
 
         </div>
 
+        
+
 
 </template>
 
 
 <script>
 
+
+import axios from 'axios';
+
 export default {
+
     data() {
         return {
-            showShrek: true,
-          
+            imageSrc: null,
+            currentPage: 1,
+            values: {
+                
+                description: '',
+                singleFile: null
+            }
+
         };
     },
-   
+
+
+    methods: {
+      
+
+        onFileChange(e) {
+            
+            const file = e.target.files[0];
+            this.imageSrc = URL.createObjectURL(file);
+            this.values.singleFile = file; 
+        },
+        removeImage() {
+            this.imageSrc = null;
+        },
+
+
+        onSubmit: async function () {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const username = apiResponse.user.username;
+            console.log("Username:", username);
+
+
+            console.log("values", this.values)
+
+            const formData = new FormData()
+
+            const data = {
+
+                description: this.values.description,
+                pseudo: username,
+                
+            }
+
+            console.log("data", data)
+
+            formData.append("data", JSON.stringify(data))
+            formData.append("files.image", this.values.singleFile)
+            
+            try {
+                const response = await axios.post('http://localhost:1337/api/posts', formData);
+                console.log('Form submitted successfully:', response.data);
+                setTimeout(() => {
+                    this.$router.push({ path: `/home` });
+                }, 1000);
+                
+            } catch (error) {
+                console.error('An error occurred while submitting the form:', error);
+            }
+            
+            
+        },
+    
+
+    },
+
+
+    mounted() {
+        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+        console.log("localstorage", apiResponse);
+        
+
+    },
 };
+
+
+
+
+
+
 
 </script>
 
