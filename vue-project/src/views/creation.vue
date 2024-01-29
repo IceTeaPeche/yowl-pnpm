@@ -2,7 +2,7 @@
 
     <div class="flex mt-8" >
 
-            <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')" >
+            <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')" >
             <h1 class="text-white text-[25px] ml-[114px] font-bold " >New Post</h1>
 
         </div>
@@ -23,15 +23,15 @@
         </div>
 
            <div class="ml-[69px] mt-1 ">
-            <img v-if="showShrek" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/shrek.png"  width="297" alt="">
+            <img v-if="showShrek" src="../assets/shrek.png"  width="297" alt="">
             <button @click="showShrek = false">
-                <img class="absolute top-0 right-0 mr-[68px] mt-[280px] w-8 h-8 bg-transparent " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Group 37.svg" alt="">
+                <img class="absolute top-0 right-0 mr-[68px] mt-[280px] w-8 h-8 bg-transparent " src="../assets/Group 37.svg" alt="">
             </button> 
         </div>
 
      
        <div class="ml-[75px] mt-1 transform -translate-y-5">
-            <button><img height="" width="33" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/ajoutimage.svg" alt=""></button>
+            <button><img height="" width="33" src="../assets/ajoutimage.svg" alt=""></button>
         </div>
          <div class="flex items-center justify-center ml-[70px]">
 
@@ -67,10 +67,10 @@ export default {
     data() {
         return {
             showShrek: true,
-            // other data properties...
+          
         };
     },
-    // other component options...
+   
 };
 
 </script>

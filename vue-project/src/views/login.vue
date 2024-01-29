@@ -1,6 +1,6 @@
 <template>
         <div class="flex flex-col justify-center items-center h-screen  relative">
-                <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Logofinal.svg" alt="Logo"
+                <img src="../assets/Logofinal.svg" alt="Logo"
                        class="absolute top-24 left-1/2 transform -translate-x-1/2 w-[200px] z-2">
 
 
@@ -41,7 +41,7 @@
         <div class="justify-start items-center gap-2.5 inline-flex">
         
 
-        <img class="ml-3.5"  src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/icons8-google 1.svg" alt="">
+        <img class="ml-3.5"  src="../assets/icons8-google 1.svg" alt="">
 
         <div class="text-white text-xs font-medium font-['Poppins']">Sign in with Google</div>
         </div>
@@ -85,9 +85,6 @@ export default {
                                                         const status = response.status;
                                                         console.log(status)
                                                         if (status == 200) {
-                                                                const identifier = response.data.user.username;
-                                                                const userId = response.data.user.id;
-                                                                const userTokens = response.data.jwt;
                                                                  this.$router.push({
                                                         path: `/home`
                                                 });

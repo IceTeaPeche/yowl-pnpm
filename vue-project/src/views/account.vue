@@ -1,7 +1,7 @@
 <template>
-    <div class="flex mt-8 mb-4">
+    <div class="flex mt-8 mb-4" @click="$router.push('/security')">
 
-        <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="">
+        <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="">
         <h1 class="text-white text-[25px] ml-[123px] font-bold ">Account</h1>
 
     </div>
@@ -12,7 +12,7 @@
 
                             <div class="ml-4 flex"> 
                 
-                                <img width="42" height="35" class="mt-1.5" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 3.png" alt="">
+                                <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
                                 <h1 class="text-white mt-2 ml-1 font-bold text-xl">Noha</h1>
             

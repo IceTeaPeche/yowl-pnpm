@@ -6,23 +6,23 @@
 
                     <div class="ml-7">
                         <div>
-                            <img height="50px" width="50px" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 3.png" alt="">
+                            <img height="50px" width="50px" src="../assets/Ellipse 3.png" alt="">
                         </div>
                     </div>
 
                     <div class=" ml-5">
                         <div>
-                            <img height="80" width="80" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Logofinal.svg" alt="">
+                            <img height="80" width="80" src="../assets/Logofinal.svg" alt="">
                         </div>
                     </div>
 
                     <div class="flex mr-7">
                         <div class="mr-4 move-up">
-                            <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/cloche.svg" alt="">
+                            <img src="../assets/cloche.svg" alt="">
                         </div>
 
                         <div>
-                            <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/parametre.svg" alt="">
+                            <img src="../assets/parametre.svg" alt="">
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
 
                 <div class="ml-5 flex"> 
                 
-                    <img width="30" height="32" class="mt-1.5" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 3.png" alt="">
+                    <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
                     <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
 
@@ -63,7 +63,7 @@
 
                     <div class="ml-5 flex"> 
                 
-                        <img width="30" height="32" class="mt-1.5" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 3.png" alt="">
+                        <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
                         <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
 
@@ -83,7 +83,7 @@
 
                         <div class="ml-5 flex"> 
                 
-                            <img width="30" height="32" class="mt-1.5" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 3.png" alt="">
+                            <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
                             <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
 
@@ -114,16 +114,16 @@
                 <section class="flex justify-between mb-4 ">
 
                     <div class=" margin-left mt-1.5">
-                        <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/maisonblanche.svg" alt="" @click="$router.push('home')">
+                        <img src="../assets/maisonblanche.svg" alt="" @click="$router.push('home')">
                     </div>
 
                     <div>
-                        <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/gridicons_create.svg" alt=""
+                        <img src="../assets/gridicons_create.svg" alt=""
                         @click="$router.push('/creation')">
                     </div>
 
                     <div class=" margin-right mt-1.5">
-                        <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/recherche.svg" alt=""
+                        <img src="../assets/recherche.svg" alt=""
                         @click="$router.push('/research')">
                     </div>
 

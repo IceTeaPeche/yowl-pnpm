@@ -2,7 +2,7 @@
 
       <div class="flex mt-8 mb-10"  @click="$router.push('/home')" >
 
-                <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="" >
+                <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" >
                 <h1 class="text-white text-[25px] ml-[114px] font-bold ">Settings</h1>
 
             </div>
@@ -13,7 +13,7 @@
             <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                     <div class="bg-transparent">
-                    <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                    <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
-                        <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                        <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
-                        <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                        <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
-                        <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                        <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
-                        <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                        <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                             <div class="bg-transparent">
-                            <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                            <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                                 <div class="bg-transparent">
-                                <img class="bg-transparent" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MDright.svg" alt="">
+                                <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
                             </div>
                         </div>
                     </div>

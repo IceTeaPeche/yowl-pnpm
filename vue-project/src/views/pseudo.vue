@@ -1,7 +1,7 @@
 <template>
-    <div class="flex mt-8 mb-24">
+    <div class="flex mt-8 mb-24" @click="$router.push('/security')">
 
-        <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="">
+        <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="">
         <h1 class="text-white text-[25px] ml-[127px] font-bold ">Pseudo</h1>
 
     </div>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="flex  mb-3  ">
-        <button
+        <button @click="$router.push('/changepseudo')"
             class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[240px] mx-auto font-bold mt-5 pt-2 pb-2 text-[18px]  "
             type="submit">Change your pseudo</button>
     </div>

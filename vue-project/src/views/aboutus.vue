@@ -1,7 +1,7 @@
 <template>
     <div class="flex mt-8">
 
-        <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt=""
+        <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt=""
             @click="$router.push('/parameters')">
         <h1 class="text-white text-[25px] ml-28 font-bold ">About us</h1>
 

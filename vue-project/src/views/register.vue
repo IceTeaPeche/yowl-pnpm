@@ -4,7 +4,7 @@ Taux de chômage est de 3,5 en Juin 2023
 
 <template>
     <div class="flex flex-col justify-center items-center h-screen  relative">
-        <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Logofinal.svg" alt="Logo"
+        <img src="../assets/Logofinal.svg" alt="Logo"
             class="absolute top-24 left-1/2 transform -translate-x-1/2 w-[200px] z-0">
 
 
@@ -45,7 +45,7 @@ Taux de chômage est de 3,5 en Juin 2023
 
                     <button
                         :class="` rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[8px] pt-1 pb-1 border border-red-500  ${isClicked ? 'bg-red-500' : 'bg-grey-500'}`"
-                        @click="isClicked = !isClicked" type="submit">
+                        @click="isClicked = !isClicked" type="button">
                         Accept
                     </button>
                 </div>
@@ -54,6 +54,7 @@ Taux de chômage est de 3,5 en Juin 2023
             <p class="text-white absolute bg-transparent mt-[185px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
             <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError
             }}</p>
+            <div class="text-red-500 absolute bg-transparent mt-[315px] text-[16px] ml-1">{{ errorMessage }}</div>
 
 
 
@@ -81,7 +82,7 @@ Taux de chômage est de 3,5 en Juin 2023
             <div class="justify-start items-center gap-2.5 inline-flex">
 
 
-                <img class="ml-3.5" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/icons8-google 1.svg"
+                <img class="ml-3.5" src="../assets/icons8-google 1.svg"
                     alt="">
 
                 <div class="text-white text-xs font-medium font-['Poppins']">Register with Google</div>
@@ -106,9 +107,17 @@ export default {
             passwordError: '',
             email: '',
             emailError: '',
+            errorMessage: '',
         };
     },
     methods: {
+
+         calculateAge(birthday) {
+            const birthDate = new Date(birthday);
+            const differenceInMs = Date.now() - birthDate.getTime();
+            const ageDt = new Date(differenceInMs);
+            return Math.abs(ageDt.getUTCFullYear() - 1970);
+        },
 
         validatePassword() {
             this.passwordError = '';
@@ -137,6 +146,12 @@ export default {
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
             const birthday = document.getElementById('birthday').value;
+
+             const age = this.calculateAge(birthday);
+            if (age < 15) {
+                this.errorMessage = 'You must be at least 15 years old to register.';
+                return;
+            }
 
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',

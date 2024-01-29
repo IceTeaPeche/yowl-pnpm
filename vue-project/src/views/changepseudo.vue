@@ -1,7 +1,7 @@
 <template>
-    <div class="flex mt-8 mb-24">
+    <div class="flex mt-8 mb-24" @click="$router.push('/pseudo')">
 
-        <img class="ml-6 " src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="">
+        <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="">
         <h1 class="text-white text-[25px] ml-[127px] font-bold ">Pseudo</h1>
 
     </div>

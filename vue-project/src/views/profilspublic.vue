@@ -1,11 +1,11 @@
 <template>
     <div class="mt-8 ml-6">
-        <img src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
+        <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
     <div class="flex items-center justify-center relative">
         <img class="" height="150px" width="150px"
-            src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 5.svg" alt="">
+            src="../assets/Ellipse 5.svg" alt="">
 
     </div>
 
@@ -45,7 +45,7 @@
         <div class="ml-4 flex">
 
             <img width="42" height="35" class="mt-1.5"
-                src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 5.svg" alt="">
+                src="../assets/Ellipse 5.svg" alt="">
 
             <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
 
@@ -55,35 +55,35 @@
             <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">
                 Le live est arrivé, venez tous sur twitch ! Clé de jeu offerte à la fin, Bienvenue aux nouveaux
             </h2>
-            <img class="ml-2" src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/shrek.png" alt="">
+            <img class="ml-2" src="../assets/shrek.png" alt="">
         </div>
 
         <div class="flex mt-2 mb-4 ">
 
             <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
                 <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/coeur.svg" alt="">
+                    src="../assets/coeur.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/comment.svg" alt="">
+                    src="../assets/comment.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/partage.svg" alt="">
+                    src="../assets/partage.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/favoris.svg" alt="">
+                    src="../assets/favoris.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">
                     19k</h2>
