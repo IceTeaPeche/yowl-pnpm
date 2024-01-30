@@ -1,11 +1,10 @@
-Taux de chômage est de 3,5 en Juin 2023
 
 
 
 <template>
     <div class="flex flex-col justify-center items-center h-screen  relative">
         <img src="../assets/Logofinal.svg" alt="Logo"
-            class="absolute top-24 left-1/2 transform -translate-x-1/2 w-[200px] z-0">
+            class="absolute top-14 left-1/2 transform -translate-x-1/2 w-[200px] z-0">
 
 
         <form class="flex flex-col w-full max-w-xs gap-7 mt-[281px]">
@@ -22,22 +21,40 @@ Taux de chômage est de 3,5 en Juin 2023
 
 
 
-            <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
+   
+                <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
 
-               <input class=" text-white flex-grow pt-2 pb-2 rounded-2xl"
-                                           id="password" :type="showPassword ? 'password' : 'text'"  placeholder="Password" for required>
+                   <input class=" text-white flex-grow pt-2 pb-2 "
+                                               id="password" :type="showPassword ? 'password' : 'text'"  placeholder="Password"  @input="validatePassword" for required>
                                       
 
-                                     <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
-                                                    <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
-                                                    <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
-                                            </div>
+                                         <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
+                                                        <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                                                        <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
+                                                </div>
 
                 
 
 
 
-            </div>
+                </div>
+
+              <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl mt-5">
+
+                   <input class=" text-white flex-grow pt-2 pb-2 "
+                                               id="confirmedpassword" :type="showPassword1 ? 'password' : 'text'"  placeholder="Confirmed password" for required>
+                                      
+
+                                         <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword1 = !showPassword1">
+                                                        <img v-if="showPassword1" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                                                        <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
+                                                </div>
+
+                
+
+
+
+                </div>
 
 
             <div class="flex transform translate-y-2.5">
@@ -57,10 +74,9 @@ Taux de chômage est de 3,5 en Juin 2023
                 </div>
             </div>
 
-            <p class="text-white absolute bg-transparent mt-[185px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
-            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError
-            }}</p>
-            <div class="text-red-500 absolute bg-transparent mt-[315px] text-[16px] ml-1">{{ errorMessage }}</div>
+            <p class="text-white absolute bg-transparent mt-[186px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
+            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError}}</p>
+            <div class="text-red-500 absolute bg-transparent mt-[365px] text-[16px] ml-1">{{ errorMessage }}</div>
 
 
 
@@ -115,6 +131,8 @@ export default {
             emailError: '',
             errorMessage: '',
             showPassword: true,
+            showPassword1: true,
+            confirmedmpasword: '',
         };
     },
     methods: {
@@ -129,13 +147,13 @@ export default {
         validatePassword() {
             this.passwordError = '';
             if (this.password.length < 6) {
-                this.passwordError = 'Le mot de passe doit contenir au moins 6 caractères.';
+                this.passwordError = 'The password must contain at least 6 characters.';
             } else if (!/\d/.test(this.password)) {
-                this.passwordError = 'Le mot de passe doit contenir au moins un chiffre.';
+                this.passwordError = 'The password must contain at least one digit.';
             } else if (!/[a-z]/.test(this.password)) {
-                this.passwordError = 'Le mot de passe doit contenir au moins une lettre minuscule.';
+                this.passwordError = 'The password must contain at least one lowercase letter."';
             } else if (!/[A-Z]/.test(this.password)) {
-                this.passwordError = 'Le mot de passe doit contenir au moins une lettre majuscule.';
+                this.passwordError = 'The password must contain at least one uppercase letter.';
             }
         },
 
@@ -153,12 +171,19 @@ export default {
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
             const birthday = document.getElementById('birthday').value;
+            const confirmedpassword = document.getElementById('confirmedpassword').value;
 
              const age = this.calculateAge(birthday);
             if (age < 15) {
                 this.errorMessage = 'You must be at least 15 years old to register.';
                 return;
             }
+
+             if (password !== confirmedpassword) {
+                 this.errorMessage = 'Les 2 mot de passe ne sont pas identiques';
+                return;
+             }
+            
 
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',
@@ -197,3 +222,5 @@ export default {
     height: 1.5px;
 }
 </style>
+
+

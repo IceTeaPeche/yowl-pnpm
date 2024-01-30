@@ -270,4 +270,7 @@ export default {
     
 }
 
+.haut {
+    height: 120px;
+}
 </style>

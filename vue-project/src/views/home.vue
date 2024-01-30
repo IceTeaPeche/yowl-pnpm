@@ -42,7 +42,7 @@
                 
                 <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
 
-                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
+                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.pseudo }}</h1>
             
             </div>
 
@@ -138,7 +138,7 @@ data() {
         async fetchData() {
             try {
                 console.log("coucou nathan")
-                const response = await fetch(`http://localhost:1337/api/posts?populate=image`);
+                const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
 
                 const data = await response.json();
 

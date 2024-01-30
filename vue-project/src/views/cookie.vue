@@ -2,7 +2,7 @@
 
     <div class="flex mt-8" >
 
-        <img class="ml-6 " src="../assets/assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/register')">
+        <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/register')">
         <h1 class="text-white text-[25px] ml-32 font-bold ">Cookies</h1>
 
     </div>
