@@ -108,7 +108,9 @@ export default {
         onSubmit: async function () {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const username = apiResponse.user.username;
+             const id_user = apiResponse.user.id;
             console.log("Username:", username);
+            console.log("id_user:", id_user);
 
 
             console.log("values", this.values)
@@ -119,6 +121,7 @@ export default {
 
                 description: this.values.description,
                 pseudo: username,
+                id_user: id_user,
                 
             }
 

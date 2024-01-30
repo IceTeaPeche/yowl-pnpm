@@ -377,6 +377,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     description: Attribute.Text;
     image: Attribute.Media;
     pseudo: Attribute.String;
+    id_user: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &

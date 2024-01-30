@@ -28,6 +28,9 @@
     },
     "pseudo": {
       "type": "string"
+    },
+    "id_user": {
+      "type": "integer"
     }
   }
 }
