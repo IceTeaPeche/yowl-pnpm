@@ -96,7 +96,6 @@ export default {
                                                         const status = response.status;
                                                         console.log(status)
                                                         if (status == 200) {
-                                                                // Store the response data in local storage
                                                                 localStorage.setItem('apiResponse', JSON.stringify(response.data));
                                                 
                                                                  this.$router.push({ path: `/home`

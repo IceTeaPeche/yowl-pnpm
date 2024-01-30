@@ -12,7 +12,7 @@
 
             <input
             class="peer bg-custom-gray h-full w-full outline-none text-sm text-white pr-2 ml-4"
-            type="text"
+            type="text" v-model="search" v-on:change="fetchData()"
             id="search"
             placeholder="Search something ..." /> 
         </div>
@@ -25,47 +25,51 @@
 
         <div class="h-28"></div>
         
-          <section>
+          <article   v-for="data in datas" :key="data.id">
 
                 <div class="barre bg-gray-500 "></div>
 
-                <div class="ml-4 flex"> 
+                <div class="ml-4 flex "  @click="$router.push('/profilspublic')"> 
                 
-                    <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
+                    <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
 
-                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Marioppp</h1>
+                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
             
                 </div>
 
-                <div class="box-width ml-10 mt-0"> 
-        <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">sq,dklqjskldjqksndkonzojanfjoeznfjodnsfklsdfkjsiofsndfklsdnfsidofnsoklndfklsndkflsndfoinsdkflnsdlfkqpqqp</h2>
-        <img class="ml-2" src="../assets/shrek.png" alt="">
-    </div>
+                <div class="box-width ml-10 mt-0" > 
 
-                <div class="flex mt-2 ">
+                    <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
 
-            <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
-        <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">19k</h2>
-    </div>
-             
-
+                    <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
 
                 </div>
 
-            </section>
+            
+
+                <div class="flex mt-2 mb-3 ">
+
+                   <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
+                <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            </div>
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            </div>
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            </div>
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            </div>
+             
+
+                </div>
+
+            </article>
 
             
 
@@ -195,6 +199,52 @@
 
 <script>
 
+import axios from 'axios';
+
+export default {
+
+    data() {
+        return {
+            datas: [],
+            search: '',
+        };
+    },
+
+
+    methods: {
+        async fetchData() {
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/posts?populate=image&_q=${this.search}`);
+
+                const data = await response.json();
+
+                this.datas = data.data.filter(item => item.attributes);
+
+                console.log(data, "data take ");
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
+    },
+
+
+    mounted() {
+        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+        console.log(apiResponse);
+
+        this.fetchData();
+    },
+};
+
+
+
+
+
+
 </script>
 
 <style scoped>
@@ -213,6 +263,11 @@
 .margin-right {
     margin-right: 75px;
 
+}
+
+.box-width {
+    width: 350px;
+    
 }
 
 </style>

@@ -82,7 +82,7 @@ export default {
             imageSrc: null,
             currentPage: 1,
             values: {
-                
+
                 description: '',
                 singleFile: null
             }
@@ -129,13 +129,13 @@ export default {
             
             try {
                 const response = await axios.post('http://localhost:1337/api/posts', formData);
-                console.log('Form submitted successfully:', response.data);
+                console.log('Form send to strapi:', response.data);
                 setTimeout(() => {
                     this.$router.push({ path: `/home` });
-                }, 1000);
+                }, 500);
                 
             } catch (error) {
-                console.error('An error occurred while submitting the form:', error);
+                console.error('error the form:', error);
             }
             
             

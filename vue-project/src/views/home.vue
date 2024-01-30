@@ -130,10 +130,6 @@ data() {
         return {
             datas: [],
             
-            values: {
-                
-            }
-            
         };
     },
 
@@ -148,9 +144,9 @@ data() {
 
                 this.datas = data.data.filter(item => item.attributes);
 
-                console.log(data, "les données ont été récupérées avec succès");
+                console.log(data, "data take ");
             } catch (error) {
-                console.error('Une erreur s\'est produite lors de la récupération des données:', error);
+                console.error('error for take a data :', error);
             }
         },
            
