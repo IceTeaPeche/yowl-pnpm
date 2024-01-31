@@ -79,7 +79,8 @@ export default {
                         showPassword: true,
                 }
         },
-                methods: {
+        methods: {
+                        
                         login() {
                                 
                                         const identifier = document.getElementById('identifier').value;

@@ -4,12 +4,12 @@
 
             <nav class="flex items-center justify-between mt-8 ">
 
-                <div class="ml-7 mb-4">
-                     <div class="mt- flex items-center justify-center relative border border-white w-12 h-12 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
-                        <img class="ml-2" :src=" `http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt=""  @click="$router.push('/profilsperso')">
-      
-                    </div>
-                </div>
+                <div class="ml-7 mb-4 w-12 h-12 bg-gray-200 rounded-full" @click="$router.push('/profilsperso')">
+        <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
+            <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+
 
                 <div class=" ml-5">
                     <div>
@@ -39,10 +39,13 @@
 
             <div class="barre bg-gray-500 "></div>
 
-            <div class="ml-4 flex"  @click="profilspublic(data)"> 
-                <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
-                    <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
-                </div>
+          <div class="ml-4 flex" @click="profilspublic(data)"> 
+   <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden bg-gray-200">
+        <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
+                <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
+            </div>
+    </div>
+
             
 
                 <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>

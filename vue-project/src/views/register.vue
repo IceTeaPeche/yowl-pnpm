@@ -21,40 +21,40 @@
 
 
 
-   
-                <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
 
-                   <input class=" text-white flex-grow pt-2 pb-2 "
-                                               id="password" :type="showPassword ? 'password' : 'text'"  placeholder="Password"  @input="validatePassword" for required>
-                                      
+            <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
 
-                                         <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
-                                                        <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
-                                                        <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
-                                                </div>
-
-                
+                <input class=" text-white flex-grow pt-2 pb-2 " id="password" :type="showPassword ? 'password' : 'text'"
+                    placeholder="Password" @input="validatePassword" for required>
 
 
-
+                <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
+                    <img v-if="showPassword" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                    <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
                 </div>
 
-              <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl mt-5">
-
-                   <input class=" text-white flex-grow pt-2 pb-2 "
-                                               id="confirmedpassword" :type="showPassword1 ? 'password' : 'text'"  placeholder="Confirmed password" for required>
-                                      
-
-                                         <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword1 = !showPassword1">
-                                                        <img v-if="showPassword1" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
-                                                        <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
-                                                </div>
-
-                
 
 
 
+
+            </div>
+
+            <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl mt-5">
+
+                <input class=" text-white flex-grow pt-2 pb-2 " id="confirmedpassword"
+                    :type="showPassword1 ? 'password' : 'text'" placeholder="Confirmed password" for required>
+
+
+                <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword1 = !showPassword1">
+                    <img v-if="showPassword1" class="bg-transparent" src="../assets/mdi_eyeqsdsqd.svg" alt="">
+                    <img v-else class="bg-transparent" src="../assets/mdi_eye.svg" alt="">
                 </div>
+
+
+
+
+
+            </div>
 
 
             <div class="flex transform translate-y-2.5">
@@ -75,7 +75,8 @@
             </div>
 
             <p class="text-white absolute bg-transparent mt-[186px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
-            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{ passwordError}}</p>
+            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{
+                passwordError }}</p>
             <div class="text-red-500 absolute bg-transparent mt-[365px] text-[16px] ml-1">{{ errorMessage }}</div>
 
 
@@ -104,8 +105,7 @@
             <div class="justify-start items-center gap-2.5 inline-flex">
 
 
-                <img class="ml-3.5" src="../assets/icons8-google 1.svg"
-                    alt="">
+                <img class="ml-3.5" src="../assets/icons8-google 1.svg" alt="">
 
                 <div class="text-white text-xs font-medium font-['Poppins']">Register with Google</div>
             </div>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import CryptoJS from 'crypto-js';
+
 
 export default {
     data() {
@@ -138,13 +138,14 @@ export default {
     },
     methods: {
 
-        encryptPassword() {
-            const ciphertext = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEYPASSWORD).toString();
-            this.password = ciphertext;
-        },
+
+        
 
 
-         calculateAge(birthday) {
+
+   
+
+        calculateAge(birthday) {
             const birthDate = new Date(birthday);
             const differenceInMs = Date.now() - birthDate.getTime();
             const ageDt = new Date(differenceInMs);
@@ -180,17 +181,17 @@ export default {
             const birthday = document.getElementById('birthday').value;
             const confirmedpassword = document.getElementById('confirmedpassword').value;
 
-             const age = this.calculateAge(birthday);
+            const age = this.calculateAge(birthday);
             if (age < 15) {
                 this.errorMessage = 'You must be at least 15 years old to register.';
                 return;
             }
 
-             if (password !== confirmedpassword) {
-                 this.errorMessage = 'Les 2 mot de passe ne sont pas identiques';
+            if (password !== confirmedpassword) {
+                this.errorMessage = 'Les 2 mot de passe ne sont pas identiques';
                 return;
-             }
-            
+            }
+
 
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',
@@ -204,17 +205,22 @@ export default {
                     birthday: birthday
                 })
             })
+            
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     }
+                    
                     return response.json();
+                     
                 })
                 .then(data => {
                     console.log(data);
                     this.$router.push('/login');
+                    
+                    
                 })
-               .catch((error) => {
+                .catch((error) => {
                     console.error('Error:', error);
                 });
         },
@@ -229,5 +235,3 @@ export default {
     height: 1.5px;
 }
 </style>
-
-
