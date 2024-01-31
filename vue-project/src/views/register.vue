@@ -120,6 +120,7 @@
 </template>
 
 <script>
+import CryptoJS from 'crypto-js';
 
 export default {
     data() {
@@ -136,6 +137,12 @@ export default {
         };
     },
     methods: {
+
+        encryptPassword() {
+            const ciphertext = CryptoJS.AES.encrypt(this.password, process.env.SECRET_KEYPASSWORD).toString();
+            this.password = ciphertext;
+        },
+
 
          calculateAge(birthday) {
             const birthDate = new Date(birthday);
