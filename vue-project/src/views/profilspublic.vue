@@ -3,8 +3,8 @@
         <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
-   <div class="flex items-center justify-center relative border w-40 h-40 rounded-full overflow-hidden ml-[133px]">
-        <img class="ml-2" :src="`http://localhost:1337${dataprofils?.avatar?.url}`"  alt="">
+   <div class="flex items-center justify-center relative border w-40 h-40 rounded-full overflow-hidden ml-[133px]" v-for="item in datapps" :key="item.id">
+        <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
     </div>
 
 
@@ -45,8 +45,8 @@
 
                 <div class="ml-4 flex "> 
                 
-                    <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden ">
-        <img class="ml-2" :src="`http://localhost:1337${dataprofils?.avatar?.url}`"  alt="">
+                    <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden " v-for="item in datapps" :key="item.id">
+        <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
     </div>
 
                     <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ dataprofils.username }}</h1>
@@ -105,6 +105,7 @@ export default {
             datas: [],
             dataprofils: [],
             data: null,
+            datapps: [],
 
         };
     },
@@ -112,11 +113,44 @@ export default {
 
     methods: {
 
+
+        async ppprofilsperso() {
+            const path = window.location.pathname;
+            const match = path.match(/\/profilspublic\/([^\/]+)/);
+              if (!match || match.length < 1) {
+                console.error('Unable to extract id_user from the URL');
+                return;
+            }
+
+            const iduserpublic = match[1];
+            console.log(iduserpublic);
+
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == iduserpublic);
+                console.log("datappsfinal", this.datapps);
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
         async fetchData() {
             
             try {
                 console.log("coucou nathan")
-                const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
+                const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
 
                 const data = await response.json();
                  const path = window.location.pathname;
@@ -179,6 +213,7 @@ export default {
         console.log(apiResponse);
         this.fetchDataprofil();
         this.fetchData();
+        this.ppprofilsperso();
         
     },
 };

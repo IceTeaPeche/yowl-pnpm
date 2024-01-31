@@ -4,9 +4,10 @@
 
             <nav class="flex items-center justify-between mt-8 ">
 
-                <div class="ml-7">
-                    <div>
-                        <img height="50px" width="50px" src="../assets/Ellipse 4.svg" alt="" @click="$router.push('/profilsperso')">
+                <div class="ml-7 mb-4">
+                     <div class="mt- flex items-center justify-center relative border border-white w-12 h-12 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
+                        <img class="ml-2" :src=" `http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt=""  @click="$router.push('/profilsperso')">
+      
                     </div>
                 </div>
 
@@ -38,13 +39,16 @@
 
             <div class="barre bg-gray-500 "></div>
 
-            <div class="ml-4 flex "  @click="profilspublic(data)"> 
-                
-                <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
-
-                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.pseudo }}</h1>
+            <div class="ml-4 flex"  @click="profilspublic(data)"> 
+                <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
+                    <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
+                </div>
             
+
+                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
             </div>
+            
+    
 
             <div class="box-width ml-10 mt-0" > 
 
@@ -129,6 +133,7 @@ export default {
 data() {
         return {
             datas: [],
+            datapps: [],
             
         };
     },
@@ -146,7 +151,7 @@ data() {
         async fetchData() {
             try {
                 console.log("coucou nathan")
-                const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
+                const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
 
                 const data = await response.json();
 
@@ -157,7 +162,47 @@ data() {
                 console.error('error for take a data :', error);
             }
         },
-           
+
+         async fetchDataprofil() {
+
+            try {
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                console.log('id_user:', id_user); 
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
+                const dataprofil = await response.json();
+                this.dataprofils = dataprofil;
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+        async ppprofilsperso() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+
+            console.log("id_user de pp:", id_user);
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+                console.log("datappsfinal", this.datapps);
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+        
 
 
     },
@@ -168,6 +213,8 @@ data() {
         console.log(apiResponse);
 
         this.fetchData();
+        this.fetchDataprofil();
+        this.ppprofilsperso();
     },
 };
 

@@ -111,6 +111,7 @@ export default {
                 description: this.values.description,
                 pseudo: username,
                 id_user: id_user,
+                users_permissions_user: id_user,
 
             }
 
@@ -132,6 +133,8 @@ export default {
 
 
         },
+
+        
 
 
     },
