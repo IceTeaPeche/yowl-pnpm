@@ -38,7 +38,7 @@
 
             <div class="barre bg-gray-500 "></div>
 
-            <div class="ml-4 flex "  @click="$router.push('/profilspublic')"> 
+            <div class="ml-4 flex "  @click="profilspublic(data)"> 
                 
                 <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
 
@@ -135,6 +135,14 @@ data() {
 
 
     methods: {
+
+      profilspublic(data) {
+            this.$router.push(`/profilspublic/${data.attributes.id_user}`);
+        },
+    
+
+
+
         async fetchData() {
             try {
                 console.log("coucou nathan")

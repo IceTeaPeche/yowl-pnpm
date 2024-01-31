@@ -75,7 +75,7 @@ const router = createRouter({
     }
     ,
     {
-      path: '/profilspublic',
+      path: '/profilspublic/:user_id',
       name: 'profilspublic',
       component: profilspublic
     }

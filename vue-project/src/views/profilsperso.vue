@@ -3,167 +3,190 @@
         <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
-    <div class="flex items-center justify-center relative">
-        <img class="" height="150px" width="150px"
-            src="../assets/Ellipse 4.svg" alt="">
-
-        <div
-            class="border-2 border-white rounded-full bg-white w-7 h-7 flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-[56px] ml-10">
-            <img class="bg-transparent " src="../assets/Vector.svg"
-                alt="">
-        </div>
-
-    </div>
-
-    <div class="text-center flex justify-center items-center"> 
-
-        <H1 class="text-white text-2xl mt-1.5 font-bold ">Noah</H1>
+    <div class="relative flex items-center z-10 justify-center border w-40 h-40 rounded-full overflow-hidden ml-[133px]">
         
+        <img class="ml-2 z-10" :src="`http://localhost:1337${dataprofils?.avatar?.url}`" alt="">
+
+        
+    </div>
+     <div
+                    class="border-2 border-white z-30 rounded-full bg-white w-7 h-7 flex items-center justify-center absolute  left-1/2 
+                    mt-[-32px] ml-[37px] mb-2">
+                    <img class="bg-transparent z-30" src="../assets/Vector.svg" alt="">
+                </div>
+
+
+
+
+    <div class="text-center">
+
+        <H1 class="text-white text-2xl mt-1.5 font-bold ">{{ dataprofils.username }}</H1>
 
     </div>
 
     <div class="border border-custom-gray-2 rounded-lg mt-1 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1">
-            <h2 class="text-white text-sm bg-transparent text-left">Ceci est une bio zqsdq,lsd,qls,dlqs,;,sqd;:sq, voici là et là et encore là et surtout là hein il ne faut pas l'oublier</h2>
+        <h2 class="text-white text-sm bg-transparent text-left">{{ dataprofils.bio }} </h2>
     </div>
 
-    <div class="flex justify-center items-center text-white mr-2 mt-2">
+    <div class="flex justify-center items-center text-white mr-2 mt-2 mb-2">
 
         <div class="mr-1">
-            <h1 class="ml-9 font-bold">39</h1>
+            <h1 class="ml-9 font-bold">39k</h1>
             <h1 class="font-bold">Subscription</h1>
         </div>
 
-        <div class="ml-24">
-            <h1 class="ml-6 font-bold">15</h1>
+        <div class="ml-36">
+            <h1 class="ml-6 font-bold">15k</h1>
             <h1 class="font-bold">Followers</h1>
         </div>
 
     </div>
 
-    <div class="flex justify-center mt-6 mb-4">
-
-        <div>
-            <img class="mr-[60px]" height="" width="27" src="../assets/grille.svg" alt="">
-             <div class="barre bg-white mr-0 ml-8 mt-1.5 move-right"></div>
-        </div>
-
-        <div>
-            <img class="" height="" width="27" src="../assets/coeur.svg" alt="">
-        </div>
-
-        <div>
-             <img class="ml-[60px]" height="" width="27" src="../assets/favoris.svg" alt="">
-        </div>
-
+    <div class="flex justify-center mb-3">
+        <button
+            class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  "
+            type="submit">Follow</button>
     </div>
 
-    <section>
 
-                    <div class="barre bg-gray-500 "></div>
+    <article v-for="data in datas" :key="data.id">
 
-                    <div class="ml-4 flex"> 
-                
-                        <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
+        <div class="barre bg-gray-500 "></div>
 
-                        <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Marioppp</h1>
+        <div class="ml-4 flex ">
 
-                        <button><img class="mt-1 ml-[235px]" src="../assets/Frame 283.svg" alt=""></button>
-            
-                    </div>
-
-                    <div class="box-width ml-10 mt-0"> 
-            <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">sq,dklqjskldjqksndkonzojanfjoeznfjodnsfklsdfkjsiofsndfklsdnfsidofnsoklndfklsndkflsndfoinsdkflnsdlfkqpqqp</h2>
-            <img class="ml-2" src="../assets/shrek.png" alt="">
-        </div>
-
-                    <div class="flex mt-2 mb-4 ">
-
-                <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
-            <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-        </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-            <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-        </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-            <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-        </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-            <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">19k</h2>
-        </div>
-             
-
-
-                    </div>
-
-                </section>
-
-
-        
-           <section>
-
-                        <div class="barre bg-gray-500 "></div>
-
-                        <div class="ml-4 flex"> 
-                
-                            <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
-
-                            <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Marioppp</h1>
-
-                            <button><img class="mt-1 ml-[235px]" src="../assets/Frame 283.svg" alt=""></button>
-            
-                        </div>
-
-                        <div class="box-width ml-10 mt-0"> 
-                <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">sq,dklqjskldjqksndkonzojanfjoeznfjodnsfklsdfkjsiofsndfklsdnfsidofnsoklndfklsndkflsndfoinsdkflnsdlfkqpqqp</h2>
-                <img class="ml-2" src="../assets/shrek.png" alt="">
+            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden ">
+                <img class="ml-2" :src="`http://localhost:1337${dataprofils?.avatar?.url}`" alt="">
             </div>
 
-                        <div class="flex mt-2 mb-4">
+            <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ dataprofils.username }}</h1>
 
-                    <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
+        </div>
+
+        <div class="box-width ml-10 mt-0">
+
+            <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
+
+            <img class="ml-2"
+                v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes"
+                :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`" alt="">
+
+        </div>
+
+
+
+        <div class="flex mt-2 mb-3 ">
+
+            <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
                 <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-             
 
 
-                        </div>
+        </div>
 
-                    </section>
-
-
-
-
-
-
-
+    </article>
 </template>
 
 <script>
+
+
+import axios from 'axios';
+
+export default {
+
+    data() {
+        return {
+            datas: [],
+            dataprofils: [],
+            data: null,
+
+        };
+    },
+
+
+    methods: {
+
+        async fetchData() {
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
+
+                const data = await response.json();
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_of_account = apiResponse.user.id;
+
+                this.datas = data.data.filter(item => item.attributes && item.attributes.id_user == id_of_account);
+
+                console.log(data, "data take ");
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+        async fetchDataprofil() {
+
+            try {
+                console.log("coucou nathan")
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                console.log(id_user);
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=avatar`);
+
+                const dataprofil = await response.json();
+
+                this.dataprofils = dataprofil;
+
+                console.log(dataprofil, "data take ");
+                console.log(this.dataprofils.avatar.url, "coucou missmirachi");
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
+
+
+    },
+
+
+    mounted() {
+        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+        console.log(apiResponse);
+        this.fetchDataprofil();
+        this.fetchData();
+
+    },
+};
+
+
+
+
+
 
 
 </script>
 
 
 <style scoped>
-
-.barre{
+.barre {
     height: 2px;
 }
 
@@ -172,5 +195,4 @@
 .move-right {
     transform: translateX(-44px);
 }
-
 </style>
