@@ -12,7 +12,10 @@
      <div
                     class="border-2 border-white z-30 rounded-full bg-white w-7 h-7 flex items-center justify-center absolute  left-1/2 
                     mt-[-32px] ml-[37px] mb-2">
-                    <img class="bg-transparent z-30" src="../assets/Vector.svg" alt="">
+                     <label for="fileUpload" class="bg-transparent">
+                    <img class="bg-transparent z-50" src="../assets/Vector.svg" alt="">
+                    </label>
+                    <input type="file" id="fileUpload" @change="onFileChange" style="display: none;">
                 </div>
 
 
@@ -119,6 +122,44 @@ export default {
 
     methods: {
 
+
+        onFileChange(e) {
+
+            const file = e.target.files[0];
+            this.imageSrc = URL.createObjectURL(file);
+            this.values.singleFile = file;
+        },
+
+
+          onSubmit: async function () {
+
+
+            const formData = new FormData()
+
+
+            console.log("data", data)
+
+            formData.append("data", JSON.stringify(data))
+            formData.append("files.image", this.values.singleFile)
+
+            try {
+                const response = await axios.put('http://localhost:1337/api/posts', formData);
+                console.log('Form send to strapi:', response.data);
+                setTimeout(() => {
+                    this.$router.push({ path: `/home` });
+                }, 500);
+
+            } catch (error) {
+                console.error('error the form:', error);
+            }
+
+
+        },
+
+
+
+
+
         async fetchData() {
 
             try {
@@ -190,6 +231,10 @@ export default {
     height: 2px;
 }
 
+.box-width {
+    width: 350px;
+    
+}
 
 
 .move-right {
