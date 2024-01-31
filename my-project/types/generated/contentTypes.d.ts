@@ -387,6 +387,34 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
+export interface ApiPpPp extends Schema.CollectionType {
+  collectionName: 'pps';
+  info: {
+    singularName: 'pp';
+    pluralName: 'pps';
+    displayName: 'pp';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    imagepp: Attribute.Media;
+    users_permissions_user: Attribute.Relation<
+      'api::pp.pp',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    idpp: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::pp.pp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::pp.pp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -687,6 +715,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     avatar: Attribute.Media;
     birthday: Attribute.Date & Attribute.Required;
     bio: Attribute.Text;
+    pp: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::pp.pp'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -801,6 +834,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::post.post': ApiPostPost;
+      'api::pp.pp': ApiPpPp;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -82,6 +82,12 @@
     },
     "bio": {
       "type": "text"
+    },
+    "pp": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pp.pp",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

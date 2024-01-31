@@ -3,9 +3,9 @@
         <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
-    <div class="relative flex items-center z-10 justify-center border w-40 h-40 rounded-full overflow-hidden ml-[133px]">
+    <div class="relative flex items-center z-10 justify-center border w-40 h-40 rounded-full overflow-hidden ml-[133px]"  v-for="item in datapps" :key="item.id">
         
-        <img class="ml-2 z-10" :src="`http://localhost:1337${dataprofils?.avatar?.url}`" alt="">
+         <img class="ml-2 z-10" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
 
         
     </div>
@@ -58,8 +58,8 @@
 
         <div class="ml-4 flex ">
 
-            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden ">
-                <img class="ml-2" :src="`http://localhost:1337${dataprofils?.avatar?.url}`" alt="">
+            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
+                <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
             </div>
 
             <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ dataprofils.username }}</h1>
@@ -114,8 +114,11 @@ export default {
         return {
             datas: [],
             dataprofils: [],
+            datapps: [],
             data: null,
-
+             values: {
+                singleFile: null
+            }
         };
     },
 
@@ -128,33 +131,107 @@ export default {
             const file = e.target.files[0];
             this.imageSrc = URL.createObjectURL(file);
             this.values.singleFile = file;
+             this.onSubmit();
         },
 
 
-          onSubmit: async function () {
+        async onSubmit() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
 
-
-            const formData = new FormData()
-
-
-            console.log("data", data)
-
-            formData.append("data", JSON.stringify(data))
-            formData.append("files.image", this.values.singleFile)
+            console.log("id_user de pp:", id_user);
 
             try {
-                const response = await axios.put('http://localhost:1337/api/posts', formData);
-                console.log('Form send to strapi:', response.data);
-                setTimeout(() => {
-                    this.$router.push({ path: `/home` });
-                }, 500);
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+                console.log("datappssssssss", this.datapps);
+
+                  if (this.datapps.length === 0 || this.datapps[0].attributes.imagepp.data === null) {
+
+                    const formData = new FormData()
+
+                    const data = {
+                        idpp: id_user,
+                        users_permissions_user: id_user,
+                    }
+
+                    formData.append("data", JSON.stringify(data))
+                    formData.append("files.imagepp", this.values.singleFile)
+                    // Faire une requête POST
+                       try {
+                        const response = await axios.post('http://localhost:1337/api/pps', formData);
+                        console.log('Form send to strapi:', response.data);
+
+                    } catch (error) {
+                        console.error('error the form:', error);
+                    }
+                }
+
+                else {
+                      // Faire une requête DELETE
+                    const deletepp = await axios.delete(`http://localhost:1337/api/pps/${this.datapps[0].id}`, {
+                        headers: {
+                            Authorization: `Bearer ${apiResponse.jwt}`,
+                        },
+                    });
+                    const formData = new FormData()
+
+                    const data = {
+                        idpp: id_user,
+                        users_permissions_user: id_user,
+                    }
+
+                    formData.append("data", JSON.stringify(data))
+                    formData.append("files.imagepp", this.values.singleFile)
+                    // Faire une requête POST
+                    try {
+                        const response = await axios.post('http://localhost:1337/api/pps', formData);
+                        console.log('Form send to strapi:', response.data);
+
+                    } catch (error) {
+                        console.error('error the form:', error);
+                    }
+                }
+                location.reload();
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+             
+        },
+
+
+
+
+
+         async ppprofilsperso() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+           
+            console.log("id_user de pp:", id_user);
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+             
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+                console.log("datappsfinal",this.datapps);
 
             } catch (error) {
-                console.error('error the form:', error);
+                console.error('error for take a data :', error);
             }
-
-
         },
+
+
 
 
 
@@ -163,7 +240,7 @@ export default {
         async fetchData() {
 
             try {
-                console.log("coucou nathan")
+              
                 const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
 
                 const data = await response.json();
@@ -173,7 +250,7 @@ export default {
 
                 this.datas = data.data.filter(item => item.attributes && item.attributes.id_user == id_of_account);
 
-                console.log(data, "data take ");
+              
 
             } catch (error) {
                 console.error('error for take a data :', error);
@@ -184,18 +261,12 @@ export default {
         async fetchDataprofil() {
 
             try {
-                console.log("coucou nathan")
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log(id_user);
-                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=avatar`);
-
+                console.log('id_user:', id_user); // Check if id_user is correct
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
                 const dataprofil = await response.json();
-
                 this.dataprofils = dataprofil;
-
-                console.log(dataprofil, "data take ");
-                console.log(this.dataprofils.avatar.url, "coucou missmirachi");
             } catch (error) {
                 console.error('error for take a data :', error);
             }
@@ -213,6 +284,8 @@ export default {
         console.log(apiResponse);
         this.fetchDataprofil();
         this.fetchData();
+        this.ppprofilsperso();
+    
 
     },
 };
