@@ -120,7 +120,7 @@
 </template>
 
 <script>
-
+import bcrypt from 'bcryptjs';
 
 export default {
     data() {
@@ -174,7 +174,7 @@ export default {
         },
 
 
-        registerUser() {
+        async registerUser() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
@@ -192,7 +192,6 @@ export default {
                 return;
             }
 
-
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',
                 headers: {
@@ -200,9 +199,10 @@ export default {
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: password,
+                    password: hashedPassword,
                     email: email,
-                    birthday: birthday
+                    birthday: birthday,
+                    salt: salt,
                 })
             })
             

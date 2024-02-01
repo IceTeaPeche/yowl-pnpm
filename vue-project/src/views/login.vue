@@ -84,7 +84,8 @@ export default {
                         login() {
                                 
                                         const identifier = document.getElementById('identifier').value;
-                                        const password = document.getElementById('password').value;
+                                           const password = document.getElementById('password').value;
+                                     
                                         axios.post('http://localhost:1337/api/auth/local', {
                                                 identifier: identifier,
                                                 password: password,
