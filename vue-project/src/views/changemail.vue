@@ -43,6 +43,7 @@ console.log(userId, 'userId');
       email: this.email,
     });
     console.log(response.data);
+    this.$router.push({ path: `/mail` });
   } catch (error) {
     console.error(error);
   }
@@ -52,5 +53,5 @@ console.log(userId, 'userId');
 </script>
 
 <style scoped>
-/* Your styles here */
+
 </style>

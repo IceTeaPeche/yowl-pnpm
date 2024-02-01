@@ -43,6 +43,7 @@ methods: {
         username: this.username,
       });
       console.log(response.data);
+        this.$router.push({ path: `/pseudo` });
     } catch (error) {
       console.error(error);
     }

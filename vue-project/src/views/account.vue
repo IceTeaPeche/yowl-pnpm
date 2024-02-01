@@ -43,7 +43,7 @@
         <div class="flex  mb-3 bg-transparent  ">
             <button
                 class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[220px] mx-auto font-bold mt-8 pt-2 pb-2 text-[18px]"
-                type="submit">Delete account</button>
+                type="button" v-on:click="Deleteaccount">Delete account</button>
         </div>
         <div class="flex  mb-3 bg-transparent  ">
             <button
@@ -58,15 +58,50 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     data() {
         return {
             showPopup: false,
         };
     },
-  
-};
+
+
+        methods: {
+
+
+            Deleteaccount() {
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+
+                axios.delete(`http://localhost:1337/api/users/${id_user}`, {
+                })
+
+
+
+                    .then(response => {
+                        console.log(response);
+                        const status = response.status;
+                        console.log(status)
+                        if (status == 200) {
+
+
+                            this.$router.push({
+                                path: `/register`
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+
+                    });
+            }
+
+        },
+
+
+
+    };
 
 
 

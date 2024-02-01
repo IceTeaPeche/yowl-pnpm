@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import bcrypt from 'bcryptjs';
+
 
 export default {
     data() {
@@ -199,10 +199,10 @@ export default {
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: hashedPassword,
+                    password: password,
                     email: email,
                     birthday: birthday,
-                    salt: salt,
+                  
                 })
             })
             

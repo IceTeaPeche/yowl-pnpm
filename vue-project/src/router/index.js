@@ -20,6 +20,7 @@ import pseudo from '@/views/pseudo.vue'
 import account from '@/views/account.vue'
 import cookieparameters from '@/views/cookieparameters.vue'
 import privacyparameters from '@/views/privacyparameters.vue'
+import CGU from '@/views/CGU.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -148,6 +149,12 @@ const router = createRouter({
       path: '/privacyparameters',
       name: 'privacyparameters',
       component: privacyparameters
+    }
+    ,
+    {
+      path: '/CGU',
+      name: 'CGU',
+      component: CGU
     }
     ]
 })

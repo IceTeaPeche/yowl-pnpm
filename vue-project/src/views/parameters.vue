@@ -20,8 +20,8 @@
     </button>
         
 
-      <button class="mb-6"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-            <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Accessibility</div>
+      <button class="mb-6"  @click="$router.push('/CGU')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
+            <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">CGU</div>
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
@@ -31,16 +31,7 @@
             </div>
         </button>
 
-          <button class="mb-6"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-            <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent whitespace-nowrap">Terms of Service</div>
-                <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
-            
-                        <div class="bg-transparent">
-                        <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
-                    </div>
-                </div>
-            </div>
-        </button>
+          
 
           <button class="mb-6" @click="$router.push('/privacyparameters')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
             <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent whitespace-nowrap">Privacy Policy</div>
@@ -64,16 +55,7 @@
             </div>
         </button>
 
-            <button class="mb-6"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-                <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Legal</div>
-                    <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
-                            <div class="bg-transparent">
-                            <img class="bg-transparent" src="../assets/Arrow_Left_MDright.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </button>
     
 
             <button class="mb-6" @click="$router.push('/aboutus')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
