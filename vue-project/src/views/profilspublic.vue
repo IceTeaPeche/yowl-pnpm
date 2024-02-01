@@ -104,7 +104,7 @@
         <div class="ml-4 flex">
 
             <img width="42" height="35" class="mt-1.5"
-                src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/Ellipse 5.svg" alt="">
+                src="../assets/Ellipse 5.svg" alt="">
 
             <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
 
@@ -120,28 +120,28 @@
 
             <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
                 <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/coeur.svg" alt="">
+                    src="../assets/coeur.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/comment.svg" alt="">
+                    src="../assets/comment.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/partage.svg" alt="">
+                    src="../assets/partage.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
                     19k</h2>
             </div>
             <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1"
-                    src="/Users/ethanledouble/github/yowl-pnpm/vue-project/src/assets/favoris.svg" alt="">
+                    src="../assets/favoris.svg" alt="">
                 <h2
                     class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">
                     19k</h2>

@@ -21,8 +21,6 @@ import account from '@/views/account.vue'
 import cookieparameters from '@/views/cookieparameters.vue'
 import privacyparameters from '@/views/privacyparameters.vue'
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -151,8 +149,7 @@ const router = createRouter({
       name: 'privacyparameters',
       component: privacyparameters
     }
-
-  ]
+    ]
 })
 
 export default router
