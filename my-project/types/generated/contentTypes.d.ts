@@ -383,6 +383,7 @@ export interface ApiPostPost extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    like: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &

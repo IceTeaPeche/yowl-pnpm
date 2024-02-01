@@ -191,7 +191,9 @@
 
 
                 </nav>
-
+ <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
+            <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
+        </div>
              </footer>
 
 
