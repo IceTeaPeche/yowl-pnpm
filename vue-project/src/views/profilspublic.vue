@@ -39,8 +39,7 @@
     </div>
 
 
-     <article   v-for="data in datas" :key="data.id">
-
+    
                 <div class="barre bg-gray-500 "></div>
 
                 <div class="ml-4 flex "> 
