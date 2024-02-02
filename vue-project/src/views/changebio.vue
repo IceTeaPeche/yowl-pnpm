@@ -6,8 +6,8 @@
         </div>
   
         <div class="w-[390px] h-[40px] px-2.5 py-[5px] bg-custom-gray rounded-[20px] gap-[3px] inline-flex text-white ml-5 mb-3">
-            <input v-model="bio" type="text" id="newbio" class="float-left text-white bg-transparent w-full mt-0.5 ml-2" placeholder="Enter your new bio">
-            <div class="w-6 h-6 bg-transparent relative mt-1 "></div>
+            <input v-model="bio" type="text" id="newbio" class="text-white bg-transparent text-[20px]" placeholder="Enter your new bio">
+            <div class="text-white bg-transparent text-[20px]"></div>
         </div>
   
         <div class="text-white text-[10px] ml-10 mr-10 text-center">Your bio must not offend, insult or incite hatred. Add your favorite games, or describe yourself!</div>
