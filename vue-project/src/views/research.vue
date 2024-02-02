@@ -1,41 +1,43 @@
 <template>
+    <header class="z-20 fixed top-0 w-full">
 
 
-    <header class="z-20 fixed top-0 w-full">  
+        <div
+            class='flex items-center justify-center mt-10 rounded-3xl h-12 overflow-hidden w-full bg-custom-gray ml-0.5 mr-0.5 mb-0'>
+            <div class="relative flex items-center bg-custom-gray h-12 mr-32">
+                <div class="grid bg-custom-gray place-items-center h-full w-12 h-12 text-gray-300 ml-2 ">
+                    <img src="../assets/material-symbols_searchgrey.svg" alt="">
+                </div>
 
-
-  <div class='flex items-center justify-center mt-10 rounded-3xl h-12 overflow-hidden w-full bg-custom-gray ml-0.5 mr-0.5 mb-0'>
-        <div class="relative flex items-center bg-custom-gray h-12 mr-32">
-            <div class="grid bg-custom-gray place-items-center h-full w-12 h-12 text-gray-300 ml-2 ">
-                <img src="../assets/material-symbols_searchgrey.svg" alt="">
+                <input class="peer bg-custom-gray h-full w-full outline-none text-sm text-white pr-2 ml-4" type="text"
+                    v-model="search" v-on:change="fetchData()" id="search" placeholder="Search something ..." />
             </div>
-
-            <input
-            class="peer bg-custom-gray h-full w-full outline-none text-sm text-white pr-2 ml-4"
-            type="text" v-model="search" v-on:change="fetchData()"
-            id="search"
-            placeholder="Search something ..." /> 
         </div>
-    </div>
-      
+
     </header>
 
-        
+
     <body>
 
         <div class="h-28"></div>
-        
-          <article   v-for="data in datas" :key="data.id">
+
+      <article   v-for="data in datas" :key="data.id">
 
                 <div class="barre bg-gray-500 "></div>
 
-                <div class="ml-4 flex "  @click="$router.push('/profilspublic')"> 
-                
-                    <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
-
-                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
-            
+              <div class="ml-4 flex" @click="profilspublic(data)"> 
+       <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden bg-gray-200">
+            <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
+                    <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
                 </div>
+        </div>
+
+            
+
+                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
+                </div>
+            
+    
 
                 <div class="box-width ml-10 mt-0" > 
 
@@ -49,21 +51,18 @@
 
                 <div class="flex mt-2 mb-3 ">
 
-                   <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
-                <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+                   <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)" >
+
+                <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="Cœur blanc">
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+            <div class="w-20 h-7 border border-white rounded-3xl ml-7 flex" @click="removelike(data)" >
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
                 <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
-                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
-            </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+  
+            <div class="w-10 h-7 border border-white rounded-3xl ml-10 flex" @click="addFav(data)">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            
             </div>
              
 
@@ -71,90 +70,7 @@
 
             </article>
 
-            
 
-
-             <section>
-
-                    <div class="barre bg-gray-500 mt-3 "></div>
-
-                    <div class="ml-4 flex"> 
-                
-                        <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
-
-                        <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Marioppp</h1>
-            
-                    </div>
-
-                    <div class="box-width ml-10 mt-0" > 
-
-                        <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4 ">sq,dklqjskldjqksndkonzojanfjoeznfjodnsfklsdfkjsiofsndfklsdnfsidofnsoklndfklsndkflsndfoinsdkflnsdlfkqpqqp</h2>
-
-                    </div>
-
-                    <div class="flex mt-2 ">
-
-                    <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
-        <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">19k</h2>
-    </div>
-    <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-        <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-        <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">19k</h2>
-    </div>
-             
-
-
-                    </div>
-
-                </section>
-
-        
-         <section>
-
-                        <div class="barre bg-gray-500 mt-3 "></div>
-
-                        <div class="ml-4 flex mt-1"> 
-                
-                            <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
-
-                            <h1 class="text-white mt-1 ml-2 font-bold text-lg">Marioppp</h1>
-                            
-            
-                        </div>
-
-                        <div class="mb-1">
-        <h6 class="text-white mt-[-25px] ml-[70px] text-sm overflow-hidden whitespace-nowrap text-overflow-ellipsis">ceci est une bio donc voila la c'est pour voir bio qsdjlqsjdl</h6>
-    </div>
-
-                    </section>
-
-                     <section>
-
-                            <div class="barre bg-gray-500 mt-3 "></div>
-
-                            <div class="ml-4 flex mt-1"> 
-                
-                                <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
-
-                                <h1 class="text-white mt-1 ml-2 font-bold text-lg">Marioppp</h1>
-                            
-            
-                            </div>
-
-                            <div class="mb-2">
-            <h6 class="text-white mt-[-25px] ml-[70px] text-sm overflow-hidden whitespace-nowrap text-overflow-ellipsis">ceci est une bio donc voila la c'est pour voir bio qsdjlqsjdl</h6>
-        </div>
-
-                        </section>
 
 
         <div class="h-20"></div>
@@ -162,42 +78,40 @@
 
     </body>
 
-    
 
 
 
-     <footer class="fixed bottom-0 w-full z-20">
 
-                 <div class="barre bg-gray-500 "></div>
+   
+         <footer class="fixed bottom-0 w-full">
+
+             <div class="barre bg-gray-500 "></div>
          
 
-                <nav class="mt-4 ">
+            <nav class="mt-4 ">
 
-                    <section class="flex justify-between mb-4 ">
+                <section class="flex justify-between mb-4 ">
 
-                        <div class=" margin-left mt-1.5">
-                            <img src="../assets/maisonblanche.svg" alt="" @click="$router.push('/home')">
-                        </div>
+                    <div class=" margin-left mt-1.5">
+                        <img src="../assets/maisonblanche.svg" alt="" @click="$router.push('/home')">
+                    </div>
 
-                        <div>
-                            <img src="../assets/gridicons_create.svg" alt="" @click="$router.push('/creation')">
-                        </div>
+                    <div>
+                        <img src="../assets/gridicons_create.svg" alt="" @click="$router.push('/creation')">
+                    </div>
 
-                        <div class=" margin-right mt-1.5">
-                            <img src="../assets/researchrouge.svg" alt="" @click="$router.push('/research')">
-                        </div>
+                    <div class=" margin-right mt-1.5">
+                        <img src="../assets/researchrouge.svg" alt="" @click="$router.push('/research')">
+                    </div>
 
-                    </section>
-
-
-                </nav>
- <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
-            <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
-        </div>
-             </footer>
+                </section>
 
 
+            </nav>
+
+         </footer>
 </template>
+
 
 <script>
 
@@ -208,16 +122,226 @@ export default {
     data() {
         return {
             datas: [],
+            datapps: [],
+            posts: [],
             search: '',
+
         };
     },
 
 
     methods: {
+
+
+
+
+        async addLike(data) {
+            try {
+
+                const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+                const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+                console.log('userTokens:', userTokens);
+                console.log('userId:', userId);
+
+
+                const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    }
+                });
+
+                let existingLikes = [];
+                if (responseGet.ok) {
+                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    console.log('responseData:', responseData);
+                    existingLikes = responseData.data.attributes.like.data || [];
+                }
+                console.log('existingLikes:', existingLikes);
+                const Idexisting = existingLikes.map(user => user.id);
+                console.log('userIds:', Idexisting);
+                Idexisting.push(userId);
+                console.log('userIdsssss:', Idexisting);
+
+
+
+
+
+                const requestBody = {
+                    data: {
+                        like: Idexisting
+                    }
+                }
+                const response = await fetch(`http://localhost:1337/api/posts/${data.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    console.log('Product added to collection successfully');
+
+
+                    this.isLiked = true;
+
+
+                } else {
+                    console.error('Failed to add product to collection');
+                }
+            } catch (error) {
+                console.error('An error occurred while adding product to collection:', error);
+            }
+        },
+
+
+        async removelike(data) {
+            if (!data) {
+                throw new Error("Data is not defined");
+            }
+            try {
+                const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+                const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+                console.log('userTokens:', userTokens);
+                console.log('userId:', userId);
+
+                const requete = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: userTokens,
+                    },
+                };
+                let datas2 = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, requete);
+                datas2 = await datas2.json();
+                console.log("dataforremove", datas2);
+                const updatalike = [];
+                datas2.data.attributes.like.data.forEach((item) => {
+                    updatalike.push(item.id);
+                });
+                console.log(updatalike);
+                const i = updatalike.indexOf(userId);
+
+                if (i > -1) {
+                    updatalike.splice(i, 1);
+                }
+                console.log(updatalike);
+                const updaterequete = {
+                    method: "put",
+                    body: JSON.stringify({
+                        data: {
+                            like: updatalike,
+                        },
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: userTokens,
+                    },
+                };
+
+
+                let response = await fetch(`http://localhost:1337/api/posts/${data.id}`, updaterequete);
+                if (!response.ok) {
+                    console.log("error");
+                }
+                const responseData = await response.json();
+                console.log(responseData);
+                this.isLiked = false;
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+
+        },
+
+
+        async addFav(data) {
+            try {
+
+                const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+                const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+                console.log('userTokens:', userTokens);
+                console.log('userId:', userId);
+
+
+                const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=fav`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    }
+                });
+
+                let existingfav = [];
+                if (responseGet.ok) {
+                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    console.log('responseData:', responseData);
+                    existingfav = responseData.data.attributes.fav.data || [];
+                }
+                console.log('existingfav:', existingfav);
+                const Idexistingfav = existingfav.map(user => user.id);
+                console.log('userIds:', Idexistingfav);
+                Idexistingfav.push(userId);
+                console.log('userIdsssss:', Idexistingfav);
+
+
+
+
+
+                const requestBody = {
+                    data: {
+                        fav: Idexistingfav
+                    }
+                }
+                const response = await fetch(`http://localhost:1337/api/posts/${data.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    console.log('Product added to collection successfully');
+                    this.reloadPage();
+
+
+                } else {
+                    console.error('Failed to add product to collection');
+                }
+            } catch (error) {
+                console.error('An error occurred while adding product to collection:', error);
+            }
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+        profilspublic(data) {
+            this.$router.push(`/profilspublic/${data.attributes.id_user}`);
+        },
+
+
+
+
+
+
         async fetchData() {
             try {
                 console.log("coucou nathan")
-                const response = await fetch(`http://localhost:1337/api/posts?populate=image&_q=${this.search}`);
+                const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC&_q=${this.search}`);
 
                 const data = await response.json();
 
@@ -231,7 +355,56 @@ export default {
 
 
 
+
+
+
+        async fetchDataprofil() {
+
+            try {
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                console.log('id_user:', id_user);
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
+                const dataprofil = await response.json();
+                this.dataprofils = dataprofil;
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+        async ppprofilsperso() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+
+            console.log("id_user de pp:", id_user);
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp&_q=${this.search}`);
+
+                const datapp = await response.json();
+
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+                console.log("datappsfinal", this.datapps);
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
     },
+
+
+
+
+
+
 
 
     mounted() {
@@ -239,8 +412,11 @@ export default {
         console.log(apiResponse);
 
         this.fetchData();
+        this.fetchDataprofil();
+        this.ppprofilsperso();
+
     },
-};
+}
 
 
 
@@ -250,10 +426,7 @@ export default {
 </script>
 
 <style scoped>
-
-
-
-.barre{
+.barre {
     height: 1px;
 }
 
@@ -269,10 +442,9 @@ export default {
 
 .box-width {
     width: 350px;
-    
+
 }
 
 .haut {
     height: 120px;
-}
-</style>
+}</style>
