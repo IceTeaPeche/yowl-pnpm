@@ -383,7 +383,16 @@ export interface ApiPostPost extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    like: Attribute.Integer;
+    like: Attribute.Relation<
+      'api::post.post',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    fav: Attribute.Relation<
+      'api::post.post',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
@@ -731,7 +740,16 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::post.post'
     >;
-    salt: Attribute.String;
+    userlike: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::post.post'
+    >;
+    favuser: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::post.post'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

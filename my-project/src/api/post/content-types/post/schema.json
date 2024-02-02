@@ -39,7 +39,16 @@
       "inversedBy": "posts"
     },
     "like": {
-      "type": "integer"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "userlike"
+    },
+    "fav": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "favuser"
     }
   }
 }

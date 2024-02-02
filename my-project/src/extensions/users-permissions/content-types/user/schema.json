@@ -95,8 +95,17 @@
       "target": "api::post.post",
       "mappedBy": "users_permissions_user"
     },
-    "salt": {
-      "type": "string"
+    "userlike": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "like"
+    },
+    "favuser": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "fav"
     }
   }
 }

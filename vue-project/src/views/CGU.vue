@@ -1,5 +1,5 @@
 <template>
-    <div class="flex mt-8">
+    <div class="flex mt-8" alt="">
 
         <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/parameters')">
         <h1 class="text-white text-[25px] ml-36 font-bold ">CGU</h1>
