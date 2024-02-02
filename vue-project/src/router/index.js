@@ -23,6 +23,7 @@ import privacyparameters from '@/views/privacyparameters.vue'
 import CGU from '@/views/CGU.vue'
 import bio from '@/views/bio.vue'
 import changebio from '@/views/changebio.vue'
+import certification from '@/views/certification.vue';
 
 
 const router = createRouter({
@@ -168,8 +169,14 @@ const router = createRouter({
     ,
     {
       path: '/changebio',
-      name: 'cangebio',
+      name: 'changebio',
       component: changebio
+    }
+    ,
+    {
+      path: '/certification',
+      name: 'certification',
+      component: certification
     }
     ]
 })
