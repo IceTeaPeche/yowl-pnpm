@@ -21,6 +21,9 @@ import account from '@/views/account.vue'
 import cookieparameters from '@/views/cookieparameters.vue'
 import privacyparameters from '@/views/privacyparameters.vue'
 import CGU from '@/views/CGU.vue'
+import bio from '@/views/bio.vue'
+import changebio from '@/views/changebio.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -155,6 +158,18 @@ const router = createRouter({
       path: '/CGU',
       name: 'CGU',
       component: CGU
+    }
+    ,
+    {
+      path: '/bio',
+      name: 'bio',
+      component: bio
+    }
+    ,
+    {
+      path: '/changebio',
+      name: 'cangebio',
+      component: changebio
     }
     ]
 })
