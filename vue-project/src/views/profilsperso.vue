@@ -58,6 +58,17 @@
 
         <div class="ml-4 flex ">
 
+
+                <button @click="deletetweet(data)">
+                    <div
+                        class=" bg-transparent z-30 rounded-full-w-6 h-6 flex items-center justify-center absolute  left-1/2 
+                    mt-[-10px] ml-[170px] mb-2">
+                    
+                        <img class="bg-transparent z-50 w-5  h-5" src="../assets/bin.svg" alt="">
+                    </div>
+                    </button>
+
+
             <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
                 <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
             </div>
@@ -124,6 +135,33 @@ export default {
 
 
     methods: {
+
+         async deletetweet(data) {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+            console.log("id_user de pp:", data.id);
+            axios.delete(`http://localhost:1337/api/posts/${data.id}`, {
+            })
+
+
+
+                .then(response => {
+                    console.log(response);
+                    const status = response.status;
+                    console.log(status)
+                    if (status == 200) {
+                        location.reload();
+
+                    ({
+            
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+
+                });
+        },
 
 
         onFileChange(e) {

@@ -65,21 +65,18 @@
 
             <div class="flex mt-2 mb-3 ">
 
-               <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
-            <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+               <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)" >
+
+            <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="Cœur blanc">
         </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+        <div class="w-20 h-7 border border-white rounded-3xl ml-7 flex" @click="removelike(data)" >
             <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
             <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
         </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
-            <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
-        </div>
-        <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
+  
+        <div class="w-10 h-7 border border-white rounded-3xl ml-10 flex" @click="addFav(data)">
             <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-            <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
+            
         </div>
              
 
@@ -130,24 +127,227 @@
 
 <script>
 import axios from 'axios';
-
 export default {
 
-data() {
+    data() {
         return {
             datas: [],
             datapps: [],
-            
+            posts: [],
+            isLiked: false,
+              
         };
+        
     },
+    
 
 
     methods: {
 
-      profilspublic(data) {
+
+   
+
+
+        async addLike(data) {
+            try {
+
+                const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+                const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+                console.log('userTokens:', userTokens);
+                console.log('userId:', userId);
+
+
+                const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    }
+                });
+
+                let existingLikes = [];
+                if (responseGet.ok) {
+                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    console.log('responseData:', responseData);
+                    existingLikes = responseData.data.attributes.like.data || [];
+                }
+                console.log('existingLikes:', existingLikes);
+                const Idexisting = existingLikes.map(user => user.id);
+                console.log('userIds:', Idexisting);
+                Idexisting.push(userId);
+                console.log('userIdsssss:', Idexisting);
+
+
+
+
+
+                const requestBody = {
+                    data: {
+                        like: Idexisting
+                    }
+                }
+                const response = await fetch(`http://localhost:1337/api/posts/${data.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    console.log('Product added to collection successfully');
+
+                    
+                    this.isLiked = true;
+
+
+                } else {
+                    console.error('Failed to add product to collection');
+                }
+            } catch (error) {
+                console.error('An error occurred while adding product to collection:', error);
+            }
+        },
+
+
+        async removelike(data) {
+            if (!data) {
+                throw new Error("Data is not defined");
+            }
+        try {
+        const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+        const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+        console.log('userTokens:', userTokens);
+        console.log('userId:', userId);
+
+        const requete = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: userTokens,
+            },
+        };
+        let datas2 = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, requete);
+        datas2 = await datas2.json();
+        console.log("dataforremove",datas2);
+        const updatalike = [];
+        datas2.data.attributes.like.data.forEach((item) => {
+            updatalike.push(item.id);
+        });
+        console.log(updatalike);
+        const i = updatalike.indexOf(userId);
+
+        if (i > -1) {
+            updatalike.splice(i, 1); 
+        }
+        console.log(updatalike);
+        const updaterequete = {
+            method: "put",
+            body: JSON.stringify({
+                data: {
+                    like: updatalike,
+                },
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: userTokens,
+            },
+        };
+
+
+        let response = await fetch(`http://localhost:1337/api/posts/${data.id}`, updaterequete);
+        if (!response.ok) {
+            console.log("error");
+        }
+        const responseData = await response.json();
+        console.log(responseData);
+         this.isLiked = false;
+    
+    } catch (error) {
+        console.error("Error:", error);
+        }
+    
+},
+
+
+        async addFav(data) {
+            try {
+
+                const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
+                const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
+                console.log('userTokens:', userTokens);
+                console.log('userId:', userId);
+
+
+                const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=fav`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    }
+                });
+
+                let existingfav = [];
+                if (responseGet.ok) {
+                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    console.log('responseData:', responseData);
+                    existingfav = responseData.data.attributes.fav.data || [];
+                }
+                console.log('existingfav:', existingfav);
+                const Idexistingfav = existingfav.map(user => user.id);
+                console.log('userIds:', Idexistingfav);
+                Idexistingfav.push(userId);
+                console.log('userIdsssss:', Idexistingfav);
+
+
+
+
+
+                const requestBody = {
+                    data: {
+                        fav: Idexistingfav
+                    }
+                }
+                const response = await fetch(`http://localhost:1337/api/posts/${data.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    console.log('Product added to collection successfully');
+                    this.reloadPage();
+
+
+                } else {
+                    console.error('Failed to add product to collection');
+                }
+            } catch (error) {
+                console.error('An error occurred while adding product to collection:', error);
+            }
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+        profilspublic(data) {
             this.$router.push(`/profilspublic/${data.attributes.id_user}`);
         },
-    
+
+
+
 
 
 
@@ -166,12 +366,17 @@ data() {
             }
         },
 
-         async fetchDataprofil() {
+
+      
+
+
+
+        async fetchDataprofil() {
 
             try {
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log('id_user:', id_user); 
+                console.log('id_user:', id_user);
                 const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
                 const dataprofil = await response.json();
                 this.dataprofils = dataprofil;
@@ -206,20 +411,27 @@ data() {
 
 
         
-
-
     },
 
-    
-    mounted() {
-        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-        console.log(apiResponse);
 
-        this.fetchData();
-        this.fetchDataprofil();
-        this.ppprofilsperso();
-    },
-};
+
+
+
+
+
+
+        mounted() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            console.log(apiResponse);
+
+            this.fetchData();
+            this.fetchDataprofil();
+            this.ppprofilsperso();
+            
+        },
+    }
+
+
 
 
 
