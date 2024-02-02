@@ -21,11 +21,14 @@
 
 
 
-    <div class="text-center">
+    <div class="text-center items-center justify-center flex">
 
         <H1 class="text-white text-2xl mt-1.5 font-bold ">{{ dataprofils.username }}</H1>
-
+        
+        
+    <img class="mt-2 bg-transparent" v-if="this.dataprofils && this.dataprofils.cert" :src="`http://localhost:1337${this.dataprofils.cert.url}`" alt="">
     </div>
+   
 
     <div class="border border-custom-gray-2 rounded-lg mt-1 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1">
         <h2 class="text-white text-sm bg-transparent text-left">{{ dataprofils.bio }} </h2>
@@ -262,7 +265,8 @@ export default {
                 
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
-                console.log("datappsfinal",this.datapps);
+                console.log("datappsfinal", this.datapps);
+                
 
             } catch (error) {
                 console.error('error for take a data :', error);
@@ -302,9 +306,14 @@ export default {
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
                 console.log('id_user:', id_user); // Check if id_user is correct
-                const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`);
                 const dataprofil = await response.json();
                 this.dataprofils = dataprofil;
+                console.log('dataprofils:', this.dataprofils);
+                if (this.dataprofils && this.dataprofils.cert){
+                    console.log("datacertiffinal", this.dataprofils.cert.url);
+                }
+
             } catch (error) {
                 console.error('error for take a data :', error);
             }

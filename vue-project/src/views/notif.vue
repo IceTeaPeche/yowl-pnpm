@@ -4,11 +4,11 @@
 
                 <nav class="flex items-center justify-between mt-8 ">
 
-                    <div class="ml-7">
-                        <div>
-                            <img height="50px" width="50px" src="../assets/Ellipse 3.png" alt="">
-                        </div>
-                    </div>
+                       <div class="ml-7 mb-4 w-12 h-12 bg-gray-200 rounded-full" @click="$router.push('/profilsperso')">
+            <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
+                <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
+            </div>
+        </div>
 
                     <div class=" ml-5">
                         <div>
@@ -22,7 +22,7 @@
                         </div>
 
                         <div>
-                            <img src="../assets/parametre.svg" alt="">
+                            <img src="../assets/parametre.svg" alt="" @click="$router.push('/parameters')">
                         </div>
                     </div>
 
@@ -139,6 +139,73 @@
 
 
 <script>
+
+
+
+import axios from 'axios';
+
+export default {
+
+    data() {
+        return {
+            datapps: [],
+
+        };
+    },
+
+
+    methods: {
+
+
+
+        async ppprofilsperso() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+
+            console.log("id_user de pp:", id_user);
+
+            try {
+                console.log("coucou nathan")
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+                console.log("datappsfinal", this.datapps);
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
+
+
+    },
+
+
+    mounted() {
+        const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+        console.log(apiResponse);
+        this.ppprofilsperso();
+    },
+};
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

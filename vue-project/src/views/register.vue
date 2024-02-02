@@ -25,7 +25,7 @@
             <div class="relative flex mb-[-22px] px-2.5 border border-gray-300 rounded-2xl">
 
                 <input class=" text-white flex-grow pt-2 pb-2 " id="password" :type="showPassword ? 'password' : 'text'"
-                    placeholder="Password" @input="validatePassword" for required>
+                    placeholder="Password" @input="validatePassword" v-model="password1" for required>
 
 
                 <div class="w-6 h-6 bg-transparent relative mt-2 ml-1 " @click="showPassword = !showPassword">
@@ -126,7 +126,7 @@ export default {
     data() {
         return {
             isClicked: false,
-            password: '',
+            password1: '',
             passwordError: '',
             email: '',
             emailError: '',
@@ -154,14 +154,16 @@ export default {
 
         validatePassword() {
             this.passwordError = '';
-            if (this.password.length < 6) {
+            if (this.password1.length < 8) {
                 this.passwordError = 'The password must contain at least 6 characters.';
-            } else if (!/\d/.test(this.password)) {
+            } else if (!/\d/.test(this.password1)) {
                 this.passwordError = 'The password must contain at least one digit.';
-            } else if (!/[a-z]/.test(this.password)) {
+            } else if (!/[a-z]/.test(this.password1)) {
                 this.passwordError = 'The password must contain at least one lowercase letter."';
-            } else if (!/[A-Z]/.test(this.password)) {
+            } else if (!/[A-Z]/.test(this.password1)) {
                 this.passwordError = 'The password must contain at least one uppercase letter.';
+            } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(this.password1)) {
+                this.passwordError = 'The password must contain at least one special character.';
             }
         },
 

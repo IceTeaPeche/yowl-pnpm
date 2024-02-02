@@ -1,17 +1,24 @@
 <template>
     <div class="flex mt-8">
 
-<img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt=""
+<img class="ml-4 " src="../assets/Arrow_Left_MD.svg" alt=""
    @click="$router.push('/parameters')">
 <h1 class="text-white text-[25px] ml-28 font-bold ">Certification</h1>
 
 </div>
 
-<div class="text-center ml-2.5 mr-2.5" style="margin-top: 100px;">
+<div class="text-center ml-2.5 mr-2.5 " style="margin-top: 100px;">
 
-<div class="text-white mb-3">
- Are you a game creator? Do you want to stand out from the rest?
+<div class="text-white text-center mb-3 p-3">
+    <div class="text-[20px]"> Are you a game creator ?</div>
+    <div class="mt-3 text-[18px]"> Do you want to stand out from the rest?</div>
+
+<div class="mt-3 ">
  Then, submit a certification request to the following email address: indécertif@gmail.com.
+ </div>
+ <div class="mt-10 ">
+     In the mail send your email, your pseudo and why you want the certification.
+     </div>
 </div>
 
 </div>

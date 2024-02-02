@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cookies",
+  "info": {
+    "singularName": "cookie",
+    "pluralName": "cookies",
+    "displayName": "cookie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "idcookieuser": {
+      "type": "integer"
+    },
+    "cookie1": {
+      "type": "boolean",
+      "default": false
+    },
+    "cookie2": {
+      "type": "boolean",
+      "default": false
+    },
+    "cookie3": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

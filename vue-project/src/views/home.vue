@@ -49,6 +49,7 @@
             
 
                 <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
+    
             </div>
             
     

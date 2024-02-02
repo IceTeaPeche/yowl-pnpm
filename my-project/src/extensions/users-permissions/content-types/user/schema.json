@@ -106,6 +106,16 @@
       "relation": "manyToMany",
       "target": "api::post.post",
       "mappedBy": "fav"
+    },
+    "cert": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
