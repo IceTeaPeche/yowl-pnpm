@@ -1,171 +1,474 @@
-<template>
+
+     
+     <template>
     <div class="mt-8 ml-6">
         <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
-    <div class="flex items-center justify-center relative">
-        <img class="" height="150px" width="150px" src="../assets/Ellipse 5.svg" alt="">
+    
 
+   <div class="flex items-center justify-center relative border w-40 h-40 rounded-full overflow-hidden ml-[133px]"   v-for="item in datapps" :key="item.id" >
+        <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt="">
     </div>
+    
+    <div class="text-center items-center justify-center flex">
 
-    <div class="text-center">
-
-        <H1 class="text-white text-2xl mt-1.5 font-bold ">oursaveugle</H1>
-
+  <h1 class="text-white text-2xl mt-1.5 font-bold ">{{ dataprofils.username }}</h1>
+   <img class="mt-2 bg-transparent" v-if="this.dataprofils && this.dataprofils.cert" :src="`http://localhost:1337${this.dataprofils.cert.url}`" alt="">
     </div>
-
     <div class="border border-custom-gray-2 rounded-lg mt-1 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1">
-        <h2 class="text-white text-sm bg-transparent text-left">Salut c'est l'ours l'aveugle, jte jure je te mens pas mais
-            par contre je suis pas aveugle </h2>
+    
+ <h2 class="text-white text-sm bg-transparent text-left">{{dataprofils.bio}} </h2>
     </div>
-
     <div class="flex justify-center items-center text-white mr-2 mt-2 mb-2">
-
-        <div class="mr-1">
-            <h1 class="ml-9 font-bold">39k</h1>
+        <div class="mr-1 flex flex-col items-center">
+            <h1 class=" font-bold">{{nbabonnement}}</h1>
             <h1 class="font-bold">Subscription</h1>
         </div>
-
-        <div class="ml-36">
-            <h1 class="ml-6 font-bold">15k</h1>
-            <h1 class="font-bold">Followers</h1>
-        </div>
-
+       <div class="ml-36 flex flex-col items-center">
+             <h1 class="font-bold">{{ nbabonne }}</h1>
+             <h1 class="font-bold">Followers</h1>
+         </div>
     </div>
 
-    <div class="flex justify-center mb-3">
-        <button
-            class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  "
-            type="submit">Follow</button>
+<div>
+ 
+
+
+      <div class="flex justify-center mb-3" v-if="isUserInResponseData">
+                  <button  @click="abonne()" class="px-2.5 border-none rounded-full bg-gray-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Followers</button>
+             </div>
+
+    <div class="flex justify-center mb-3"  v-else >
+            <button  @click="abonne()" class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Follow</button>
+        </div>
+</div>
+
+ <article   v-for="data in datas" :key="data.id">
+
+          <div class="barre bg-gray-500 "></div>
+
+
+  <div class="ml-4 flex "> 
+                
+                    <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
+        <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt="">
     </div>
 
+        <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ dataprofils.username }}</h1>
+            
+                </div>
 
-    <section>
 
-        <div class="barre bg-gray-500 "></div>
+               <div class="box-width ml-10 mt-0" > 
 
-        <div class="ml-4 flex">
 
-            <img width="42" height="35" class="mt-1.5" src="../assets/Ellipse 5.svg" alt="">
+                              <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
 
-            <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
 
-        </div>
-
-        <div class="box-width ml-10 mt-0">
-            <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">
-                Le live est arrivé, venez tous sur twitch ! Clé de jeu offerte à la fin, Bienvenue aux nouveaux
-            </h2>
-            <img class="ml-2" src="../assets/shrek.png" alt="">
-        </div>
-
-        <div class="flex mt-2 mb-4 ">
-
-            <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
+           <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
+                </div>
+   <div class="flex mt-2 mb-3 "> <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex">
                 <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+
+
+ <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+
+
+
+ <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/partage.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
+
+  <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">
-                    19k</h2>
+                <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
+             
+                </div>
+ </article>
 
 
 
-        </div>
-
-    </section>
 
 
 
-    <section>
 
-        <div class="barre bg-gray-500 "></div>
 
-        <div class="ml-4 flex">
-
-            <img width="42" height="35" class="mt-1.5"
-                src="../assets/Ellipse 5.svg" alt="">
-
-            <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">Oursaveugle</h1>
-
-        </div>
-
-        <div class="box-width ml-10 mt-0">
-            <h2 class="text-white box-width break-words ml-3.5 mt-0 pr-4">
-                Le live est terminé,merci d'etre venu sur twitch ! Clé de jeu offerte à personne, bonne nuit la famille et
-                aux nouveaux
-            </h2>
-        </div>
-
-        <div class="flex mt-2 mb-4">
-
-            <div class="w-20 h-7 border border-white rounded-3xl ml-12 flex z-10">
-                <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1"
-                    src="../assets/coeur.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
-            </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="../assets/comment.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
-            </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5"
-                    src="../assets/partage.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm bg-transparent transform translate-y-[1.5px] z-0">
-                    19k</h2>
-            </div>
-            <div class="w-20 h-7 border border-white rounded-3xl ml-3 flex z-10">
-                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1"
-                    src="../assets/favoris.svg" alt="">
-                <h2
-                    class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm transform translate-y-[1.5px] bg-transparent z-0">
-                    19k</h2>
-            </div>
+  </template>
 
 
 
-        </div>
 
-    </section>
-</template>
-
-<script>
-
-
-</script>
-
+    
 
 <style scoped>
+
+.box-width {
+    width: 350px;
+    
+}
+.move-right {
+    transform: translateX(-44px);
+}
+
 .barre {
     height: 2px;
 }
 
-
-
-.move-right {
-    transform: translateX(-44px);
-}
 </style>
+
+
+
+<script>
+
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            datas: [],
+            dataprofils: [],
+            data: null,
+            datapps: [],
+            nbabonne: 0,
+            nbabonnement: 0,
+            isUserInResponseData: false,
+        };
+    },
+
+
+
+
+
+    methods: {
+
+        async followoupas() {
+
+             try {
+                
+
+                const path = window.location.pathname;
+                const match = path.match(/\/profilspublic\/([^\/]+)/);
+                if (!match || match.length < 1) {
+                    console.error('Unable to extract id_of_account from the URL');
+                    return;
+                }
+                const id_of_account = match[1];
+
+                
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+             
+
+
+                const response = await fetch(`http://localhost:1337/api/users/${id_of_account}?populate=*`, {
+                    method: 'GET',
+
+                });
+
+                let idfollow = [];
+                if (response.ok) {
+                    const responseData = await response.json();
+                 
+                    idfollow = responseData.abonne || [];
+                }
+                
+                const Idexisting = idfollow.map(user => user.id);
+                
+
+                if (Idexisting.includes(id_user))  {
+                   
+                    this.isUserInResponseData = true;
+
+                } else {
+                  
+                      this.isUserInResponseData = false;
+
+                }
+
+
+
+
+
+            }
+            catch (error) {
+                console.error('error for take a data :', error);
+            }
+
+            
+        },
+
+
+
+
+        async cptabonne() {
+
+             try {
+               
+
+                const path = window.location.pathname;
+                const match = path.match(/\/profilspublic\/([^\/]+)/);
+                if (!match || match.length < 1) {
+                    console.error('Unable to extract id_of_account from the URL');
+                    return;
+                }
+                const id_of_account = match[1];
+
+             
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+             
+    
+              
+                const response = await fetch(`http://localhost:1337/api/users/${id_of_account}?populate=*`, {
+                    method: 'GET',
+
+                });
+
+                const responseData = await response.json();
+                
+                 this.nbabonne = responseData.abonne.length;
+                
+                
+
+            }
+            catch (error) {
+                console.error('error for take a data :', error);
+            }
+
+             try {
+                
+
+                const path = window.location.pathname;
+                const match = path.match(/\/profilspublic\/([^\/]+)/);
+                if (!match || match.length < 1) {
+                    console.error('Unable to extract id_of_account from the URL');
+                    return;
+                }
+                const id_of_account = match[1];
+
+               
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+               
+
+
+
+                const response = await fetch(`http://localhost:1337/api/users/${id_of_account}?populate=*`, {
+                    method: 'GET',
+
+                });
+
+                const responseData = await response.json();
+               
+                this.nbabonnement = responseData.abonnement.length;
+
+
+
+            }
+            catch (error) {
+                console.error('error for take a data :', error);
+            }
+
+            
+        },
+
+
+        
+
+
+        
+        async abonne() {
+
+            try {
+              
+               
+                const path = window.location.pathname;
+                const match = path.match(/\/profilspublic\/([^\/]+)/);
+                if (!match || match.length < 1) {
+                    console.error('Unable to extract id_of_account from the URL');
+                    return;
+                }
+                const id_of_account = match[1];
+
+                
+                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                const userTokens = apiResponse.jwt;
+              
+
+                
+                const responseGet = await fetch(`http://localhost:1337/api/users/${id_of_account}?populate=*`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userTokens}`
+                    }
+                });
+
+                let existingabonne = [];
+                if (responseGet.ok) {
+                    const responseData = await responseGet.json(); 
+                   
+                    existingabonne = responseData.abonne || [];
+                }
+             
+                const Idexisting = existingabonne.map(user => user.id);
+              
+
+               
+                const idUserNumber = Number(id_user);
+
+                if (Idexisting.includes(idUserNumber)) {
+                 
+                    const index = Idexisting.indexOf(idUserNumber);
+                    if (index > -1) {
+                        Idexisting.splice(index, 1);
+                    }
+                } else {
+                    Idexisting.push(idUserNumber);
+                }
+
+               
+
+
+              const data = {
+                  "abonne": Idexisting
+              }
+                  
+                    
+
+                const response = await fetch(`http://localhost:1337/api/users/${id_of_account}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                 const response2 = await fetch(`http://localhost:1337/api/users/${id_of_account}?populate=*`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                     },
+                });
+                    
+
+                const responseData = await response.json();
+             
+                 const responseData2222 = await response2.json();
+                
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+            window.location.reload();
+           
+            },
+
+        
+
+
+        async  fetchData() {
+
+            try {
+                
+                const response = await fetch(`http://localhost:1337/api/posts?populate=image&sort=createdAt:DESC`);
+                const data = await response.json();
+               
+                const path = window.location.pathname;
+                const match = path.match(/\/profilspublic\/([^\/]+)/);
+                if (!match || match.length < 1) {
+                    console.error('Unable to extract id_of_account from the URL');
+                    return;
+                }
+                const id_of_account = match[1];
+             
+                this.datas = data.data.filter(item => item.attributes && item.attributes.id_user == id_of_account);
+               
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+
+        async fetchDataprofil() {
+            const path = window.location.pathname;
+            const match = path.match(/\/profilspublic\/([^\/]+)/);
+            if (!match || match.length < 1) {
+                console.error('Unable to extract id_user from the URL');
+                return;
+            }
+            const id_user = match[1];
+           
+            try {
+                
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`);
+                const dataprofil = await response.json();
+                console.log("dataprofil", dataprofil);
+                 this.dataprofils = dataprofil;
+                 if (this.dataprofils && this.dataprofils.cert) {
+                    console.log("datacertiffinal", this.dataprofils.cert.url);
+                }else {
+                    console.log("datacertiffinal", "pas de certif");
+                }
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+        },
+
+
+         async ppprofilsperso() {
+             const path = window.location.pathname;
+            const match = path.match(/\/profilspublic\/([^\/]+)/);
+            if (!match || match.length < 1) {
+                console.error('Unable to extract id_user from the URL');
+                return;
+            }
+            const id_user = match[1];
+
+            try {
+               
+                const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
+
+                const datapp = await response.json();
+
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
+
+                this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
+               
+
+
+            } catch (error) {
+                console.error('error for take a data :', error);
+            }
+            }
+        },
+
+        mounted() {
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            this.fetchDataprofil();
+            this.fetchData();
+            this.ppprofilsperso();
+            this.cptabonne();
+             this.followoupas();
+            
+
+    }
+};
+
+
+
+
+
+</script>

@@ -7,6 +7,7 @@ import documentation from "@strapi/plugin-documentation/strapi-admin";
 import i18N from "@strapi/plugin-i18n/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import strapiGoogleAuth from "strapi-google-auth/strapi-admin";
+import cookieManager from "strapi-plugin-cookie-manager/strapi-admin";
 import customApi from "strapi-plugin-custom-api/strapi-admin";
 import importExportEntries from "strapi-plugin-import-export-entries/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
@@ -18,6 +19,7 @@ renderAdmin(document.getElementById("strapi"), {
     i18n: i18N,
     "users-permissions": usersPermissions,
     "strapi-google-auth": strapiGoogleAuth,
+    "cookie-manager": cookieManager,
     "custom-api": customApi,
     "import-export-entries": importExportEntries,
   },

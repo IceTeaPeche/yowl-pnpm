@@ -4,25 +4,22 @@
   "info": {
     "singularName": "cookie",
     "pluralName": "cookies",
-    "displayName": "cookie"
+    "displayName": "cookie",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "idcookieuser": {
       "type": "integer"
     },
-    "cookie1": {
+    "Advertissement": {
       "type": "boolean",
       "default": false
     },
-    "cookie2": {
-      "type": "boolean",
-      "default": false
-    },
-    "cookie3": {
+    "Statistic": {
       "type": "boolean",
       "default": false
     }

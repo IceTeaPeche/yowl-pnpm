@@ -35,24 +35,17 @@
     </div>
 
     <div class="flex justify-center items-center text-white mr-2 mt-2 mb-2">
-
-        <div class="mr-1">
-            <h1 class="ml-9 font-bold">39k</h1>
-            <h1 class="font-bold">Subscription</h1>
+            <div class="mr-1 flex flex-col items-center">
+                <h1 class=" font-bold">{{ nbabonnement }}</h1>
+                <h1 class="font-bold">Subscription</h1>
+            </div>
+           <div class="ml-36 flex flex-col items-center">
+                 <h1 class="font-bold">{{ nbabonne }}</h1>
+                 <h1 class="font-bold">Followers</h1>
+             </div>
         </div>
 
-        <div class="ml-36">
-            <h1 class="ml-6 font-bold">15k</h1>
-            <h1 class="font-bold">Followers</h1>
-        </div>
 
-    </div>
-
-    <div class="flex justify-center mb-3">
-        <button
-            class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  "
-            type="submit">Follow</button>
-    </div>
 
 
     <article v-for="data in datas" :key="data.id">
@@ -129,6 +122,8 @@ export default {
             datas: [],
             dataprofils: [],
             datapps: [],
+            nbabonne: 0,
+            nbabonnement: 0,
             data: null,
              values: {
                 singleFile: null
@@ -320,6 +315,62 @@ export default {
         },
 
 
+        
+        async cptabonne() {
+
+            try {
+                console.log("coucou cptabonne")
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                console.log('id_user:', id_user); // Check if id_user is correct
+
+
+
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`, {
+                    method: 'GET',
+
+                });
+
+                const responseData = await response.json();
+                console.log(responseData, "dataGetabonne ");
+                this.nbabonne = responseData.abonne.length;
+
+
+
+            }
+            catch (error) {
+                console.error('error for take a data :', error);
+            }
+
+            try {
+                console.log("coucou nathan")
+
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+                console.log('id_user:', id_user);
+
+
+
+                const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`, {
+                    method: 'GET',
+
+                });
+
+                const responseData = await response.json();
+                console.log(responseData, "dataGetabonnement ");
+                this.nbabonnement = responseData.abonnement.length;
+
+
+
+            }
+            catch (error) {
+                console.error('error for take a data :', error);
+            }
+
+
+        },
+
 
 
 
@@ -332,7 +383,7 @@ export default {
         this.fetchDataprofil();
         this.fetchData();
         this.ppprofilsperso();
-    
+        this.cptabonne();
 
     },
 };
