@@ -17,6 +17,9 @@
         <textarea id="description" v-model="values.description" class=" bg-custom-gray h-[100px] text-m text-white rounded-2xl 
         w-4/5 ml-4  pl-4 pr-4 mr-4 pb-4 resize-none pt-2" placeholder="Add text ..."></textarea>
     </div>
+    <div class="mt-4 ml-12">
+        <input type="url" v-model="values.link" class="bg-custom-gray text-m text-white rounded-2xl w-4/5 ml-4 pl-4 pr-4 mr-4 pb-2 pt-2 resize-none" placeholder="Add link here...">
+    </div>
 
     <div v-if="imageSrc" class="ml-[69px] mt-1 ">
         <img :src="imageSrc" alt="Uploaded Image" width="297">
@@ -73,7 +76,8 @@ export default {
             values: {
 
                 description: '',
-                singleFile: null
+                singleFile: null,
+                 link: ''
             }
 
         };
@@ -111,6 +115,7 @@ export default {
                 description: this.values.description,
                 pseudo: username,
                 id_user: id_user,
+                link: this.values.link,
                 users_permissions_user: id_user,
 
             }

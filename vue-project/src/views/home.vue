@@ -58,7 +58,11 @@
 
                 <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
 
-                <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
+                <a class="text-blue-500 break-words ml-3.5 " :href="data.attributes.link" target="_blank">{{ data.attributes.link }}</a>
+
+                <img class="ml-2 mt-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
+
+                
 
             </div>
 
