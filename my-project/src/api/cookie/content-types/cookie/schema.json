@@ -15,13 +15,11 @@
     "idcookieuser": {
       "type": "integer"
     },
-    "Advertissement": {
-      "type": "boolean",
-      "default": false
-    },
     "Statistic": {
-      "type": "boolean",
-      "default": false
+      "type": "integer"
+    },
+    "Advertissement": {
+      "type": "integer"
     }
   }
 }

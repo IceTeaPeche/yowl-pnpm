@@ -223,7 +223,6 @@ export default {
 
                     formData.append("data", JSON.stringify(data))
                     formData.append("files.imagepp", this.values.singleFile)
-                    // Faire une requête POST
                     try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
                         console.log('Form send to strapi:', response.data);

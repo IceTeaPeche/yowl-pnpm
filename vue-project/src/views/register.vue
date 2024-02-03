@@ -61,16 +61,22 @@
                 <h2 class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 ">
                     do you accept cookies ?</h2>
 
-                <div class="mr-[51px] mt-[2px]">
+                <div class="mr-[51px] mt-[2px] flex">
                     <button
                         class="border-none rounded-2xl bg-red-500 text-white cursor-pointer pl-1.5 pr-1.5 text-[8px] mr-4 pt-1 pb-1"
                         type="button" @click="$router.push('/cookie')">Personalize</button>
-
-                    <button
-                        :class="` rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[8px] pt-1 pb-1 border border-red-500  ${isClicked ? 'bg-red-500' : 'bg-grey-500'}`"
-                        @click="isClicked = !isClicked" type="button">
-                        Accept
+                
+                <div  class="flex">
+                    <button 
+                        :class="`rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[8px] pt-1 pb-1 border border-red-500 ${isClicked ? 'bg-red-500' : 'bg-grey-500'}`"
+                        @click="buttonaccept()" type="button">
+                        {{ isClicked ? 'Accepted' : 'Accept' }}
                     </button>
+
+
+
+
+                </div>
                 </div>
             </div>
 
@@ -120,6 +126,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 
 export default {
@@ -134,12 +142,47 @@ export default {
             showPassword: true,
             showPassword1: true,
             confirmedmpasword: '',
+             cookiePreferences: {
+                Statistic: 1,
+                Advertissement: 1,
+            },
         };
     },
     methods: {
 
 
-        
+
+        async buttonaccept() {
+           
+            this.isClicked = !this.isClicked;
+
+           
+            const nvaleur = this.isClicked ? 1 : 0;
+
+            try {
+               
+                const data = {
+                    "data": {
+                        "Statistic": nvaleur,
+                        "Advertissement": nvaleur,
+                    }
+                };
+
+                await fetch(`http://localhost:1337/api/cookies/19`, {
+                    method: 'PUT', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                console.log("Cookies preferences updated:", data);
+            } catch (error) {
+                console.error('Erreur lors de la mise à jour des préférences de cookies:', error);
+            }
+        },
+
+
 
 
 
@@ -207,7 +250,6 @@ export default {
                   
                 })
             })
-            
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
@@ -219,16 +261,26 @@ export default {
                 .then(data => {
                     console.log(data);
                     this.$router.push('/login');
+                   
+                     
                     
                     
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                 });
+
         },
+    },
+        
+   
+
 
     }
-}
+
+
+
+
 
 </script>
 
