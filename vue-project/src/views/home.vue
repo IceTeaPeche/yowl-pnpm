@@ -67,26 +67,24 @@
             </div>
 
             
-
-            <div class="flex mt-2 mb-3 ">
-
-               <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)" >
-
-            <img class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1" src="../assets/coeur.svg" alt="Cœur blanc">
-        </div>
+    <div class="flex mt-2 mb-3">
+         <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)">
+        <img v-if="data.isLikedByCurrentUser" src="../assets/coeurouge.svg" alt="Cœur rouge" class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
+        <img v-else src="../assets/coeur.svg" alt="Cœur blanc" class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
+    </div>
+    
         <div class="w-20 h-7 border border-white rounded-3xl ml-7 flex" @click="removelike(data)" >
             <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
             <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
         </div>
   
         <div class="w-10 h-7 border border-white rounded-3xl ml-10 flex" @click="addFav(data)">
-            <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" src="../assets/favoris.svg" alt="">
+        
+             <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1 pl-[2px]" v-if="data.isfavByCurrentUser" src="../assets/favrouge.svg" alt="Favori" >
+             <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" v-else src="../assets/favoris.svg" alt="Pas en favori" >
+        </div>
             
         </div>
-             
-
-            </div>
-
         </article>
         
 <div class="h-[80px]"></div>
@@ -149,7 +147,6 @@ export default {
 
     methods: {
 
-
    
 
 
@@ -172,15 +169,27 @@ export default {
 
                 let existingLikes = [];
                 if (responseGet.ok) {
-                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    const responseData = await responseGet.json(); 
                     console.log('responseData:', responseData);
                     existingLikes = responseData.data.attributes.like.data || [];
                 }
                 console.log('existingLikes:', existingLikes);
                 const Idexisting = existingLikes.map(user => user.id);
                 console.log('userIds:', Idexisting);
-                Idexisting.push(userId);
+                const idUserNumber = Number(userId);
+                  if (Idexisting.includes(idUserNumber)) {
+
+                    const index = Idexisting.indexOf(idUserNumber);
+                    if (index > -1) {
+                        Idexisting.splice(index, 1);
+                    
+
+                    }
+                } else {
+                      Idexisting.push(idUserNumber);
+                }
                 console.log('userIdsssss:', Idexisting);
+                data.isLikedByCurrentUser = !data.isLikedByCurrentUser;
 
 
 
@@ -202,8 +211,6 @@ export default {
 
                 if (response.ok) {
                     console.log('Product added to collection successfully');
-
-                    
                     this.isLiked = true;
 
 
@@ -213,69 +220,19 @@ export default {
             } catch (error) {
                 console.error('An error occurred while adding product to collection:', error);
             }
+            this.fetchData();
         },
 
 
-        async removelike(data) {
-            if (!data) {
-                throw new Error("Data is not defined");
-            }
-        try {
-        const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
-        const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-        console.log('userTokens:', userTokens);
-        console.log('userId:', userId);
-
-        const requete = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: userTokens,
-            },
-        };
-        let datas2 = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, requete);
-        datas2 = await datas2.json();
-        console.log("dataforremove",datas2);
-        const updatalike = [];
-        datas2.data.attributes.like.data.forEach((item) => {
-            updatalike.push(item.id);
-        });
-        console.log(updatalike);
-        const i = updatalike.indexOf(userId);
-
-        if (i > -1) {
-            updatalike.splice(i, 1); 
-        }
-        console.log(updatalike);
-        const updaterequete = {
-            method: "put",
-            body: JSON.stringify({
-                data: {
-                    like: updatalike,
-                },
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: userTokens,
-            },
-        };
 
 
-        let response = await fetch(`http://localhost:1337/api/posts/${data.id}`, updaterequete);
-        if (!response.ok) {
-            console.log("error");
-        }
-        const responseData = await response.json();
-        console.log(responseData);
-         this.isLiked = false;
-    
-    } catch (error) {
-        console.error("Error:", error);
-        }
-    
-},
 
 
-        async addFav(data) {
+
+
+
+
+         async addFav(data) {
             try {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
@@ -292,17 +249,29 @@ export default {
                     }
                 });
 
-                let existingfav = [];
+                let existingFav = [];
                 if (responseGet.ok) {
-                    const responseData = await responseGet.json(); // Parse the response body as JSON
+                    const responseData = await responseGet.json();
                     console.log('responseData:', responseData);
-                    existingfav = responseData.data.attributes.fav.data || [];
+                    existingFav = responseData.data.attributes.fav.data || [];
                 }
-                console.log('existingfav:', existingfav);
-                const Idexistingfav = existingfav.map(user => user.id);
-                console.log('userIds:', Idexistingfav);
-                Idexistingfav.push(userId);
-                console.log('userIdsssss:', Idexistingfav);
+                console.log('existingFav:', existingFav);
+                const Idexisting = existingFav.map(user => user.id);
+                console.log('userIds:', Idexisting);
+                const idUserNumber = Number(userId);
+                if (Idexisting.includes(idUserNumber)) {
+
+                    const index = Idexisting.indexOf(idUserNumber);
+                    if (index > -1) {
+                        Idexisting.splice(index, 1);
+
+
+                    }
+                } else {
+                    Idexisting.push(idUserNumber);
+                }
+                console.log('userIdsssss:', Idexisting);
+                data.isFavByCurrentUser = !data.isFavByCurrentUser;
 
 
 
@@ -310,7 +279,7 @@ export default {
 
                 const requestBody = {
                     data: {
-                        fav: Idexistingfav
+                        fav : Idexisting
                     }
                 }
                 const response = await fetch(`http://localhost:1337/api/posts/${data.id}`, {
@@ -324,7 +293,6 @@ export default {
 
                 if (response.ok) {
                     console.log('Product added to collection successfully');
-                    this.reloadPage();
 
 
                 } else {
@@ -333,13 +301,8 @@ export default {
             } catch (error) {
                 console.error('An error occurred while adding product to collection:', error);
             }
+            this.fetchData();
         },
-
-
-
-
-
-
 
 
 
@@ -356,20 +319,31 @@ export default {
 
 
 
-        async fetchData() {
+      async fetchData() {
             try {
-                console.log("coucou nathan")
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
                 const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
-
                 const data = await response.json();
 
-                this.datas = data.data.filter(item => item.attributes);
+                const posts = data.data.map(post => {
+                   
+                    const isLikedByCurrentUser = post.attributes.like.data.some(like => like.id === id_user);
+                 
+                    const isfavByCurrentUser = post.attributes.fav.data.some(fav => fav.id === id_user); 
+                    return {
+                        ...post,
+                        isLikedByCurrentUser,
+                        isfavByCurrentUser,
+                    };
+                });
 
-                console.log(data, "data take ");
+                this.datas = posts;
             } catch (error) {
-                console.error('error for take a data :', error);
+                console.error('Erreur lors de la récupération des posts :', error);
             }
         },
+
 
 
       
