@@ -30,13 +30,13 @@
         try {
           const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
           const userId = apiResponse.user.id;
-          console.log(userId, 'userId');
+         
   
           const response = await axios.put(`http://localhost:1337/api/users/${userId}`, {
             bio: this.bio,
           });
   
-          console.log(response.data);
+        
         } catch (error) {
           console.error(error);
         }

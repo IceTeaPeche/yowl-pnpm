@@ -133,6 +133,13 @@ export default {
     },
     methods: {
 
+        async hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hash = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        },
+
 
 
         async buttonaccept() {
@@ -159,7 +166,7 @@ export default {
                     body: JSON.stringify(data),
                 });
 
-                console.log("Cookies preferences updated:", data);
+               
             } catch (error) {
                 console.error('Erreur lors de la mise à jour des préférences de cookies:', error);
             }
@@ -221,6 +228,9 @@ export default {
                 return;
             }
 
+            const hashedPassword = await this.hashPassword(password);
+
+
             fetch('http://localhost:1337/api/auth/local/register', {
                 method: 'POST',
                 headers: {
@@ -228,7 +238,7 @@ export default {
                 },
                 body: JSON.stringify({
                     username: username,
-                    password: password,
+                    password: hashedPassword,
                     email: email,
                     birthday: birthday,
                     number: number,
@@ -243,7 +253,7 @@ export default {
                      
                 })
                 .then(data => {
-                    console.log(data);
+                   
                     this.$router.push('/login');
                    
                      

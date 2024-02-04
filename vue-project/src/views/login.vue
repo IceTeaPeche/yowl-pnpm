@@ -61,23 +61,32 @@ export default {
                 }
         },
         methods: {
+
+                  async hashPassword(password) {
+                        const encoder = new TextEncoder();
+                        const data = encoder.encode(password);
+                        const hash = await crypto.subtle.digest('SHA-256', data);
+                        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+                },
                         
-                        login() {
+                        async login() {
                                 
                                         const identifier = document.getElementById('identifier').value;
-                                           const password = document.getElementById('password').value;
+                                        const password = document.getElementById('password').value;
+
+                                        const HachedPassword = await this.hashPassword(password);
                                      
                                         axios.post('http://localhost:1337/api/auth/local', {
                                                 identifier: identifier,
-                                                password: password,
+                                                password:  HachedPassword,
                                         })
 
 
                                         
                                                 .then(response => {
-                                                        console.log(response);
+                                                       
                                                         const status = response.status;
-                                                        console.log(status)
+                                                       
                                                         if (status == 200) {
                                                                 localStorage.setItem('apiResponse', JSON.stringify(response.data));
                                                 

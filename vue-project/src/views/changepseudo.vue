@@ -32,17 +32,17 @@ data() {
 },
 methods: {
   async saveUsername() {
-    const apiResponse = JSON.parse(localStorage.getItem('apiResponse')); // Corrected here
-  console.log(apiResponse);
+    const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+
   
-  // Get user ID from apiResponse or local storage
+
   const userId = apiResponse.user.id 
-  console.log(userId, 'userId');
+
     try {
       const response = await axios.put(`http://localhost:1337/api/users/${userId}`, {
         username: this.username,
       });
-      console.log(response.data);
+    
         this.$router.push({ path: `/pseudo` });
     } catch (error) {
       console.error(error);
@@ -53,5 +53,5 @@ methods: {
 </script>
 
 <style scoped>
-/* Your styles here */
+
 </style>

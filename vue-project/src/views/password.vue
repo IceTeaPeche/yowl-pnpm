@@ -62,7 +62,7 @@ import axios from 'axios';
                  const currentPassword = document.getElementById('passwordcurrent').value;
                  const userNewPassword = document.getElementById('newpassword').value;
                 const userNewPasswordConfirmation = document.getElementById('newpasswordconfirmation').value;
-                console.log(currentPassword, userNewPassword, userNewPasswordConfirmation);
+             
 
                 fetch('http://localhost:1337/api/auth/change-password', {
                     method: 'PUT',

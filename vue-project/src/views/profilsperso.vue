@@ -153,16 +153,16 @@ export default {
          async deletetweet(data) {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
-            console.log("id_user de pp:", data.id);
+         
             axios.delete(`http://localhost:1337/api/posts/${data.id}`, {
             })
 
 
 
                 .then(response => {
-                    console.log(response);
+                  
                     const status = response.status;
-                    console.log(status)
+                  
                     if (status == 200) {
                         location.reload();
 
@@ -172,7 +172,7 @@ export default {
                     }
                 })
                 .catch(error => {
-                    console.log(error);
+                  
 
                 });
         },
@@ -191,16 +191,16 @@ export default {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
 
-            console.log("id_user de pp:", id_user);
+           
 
             try {
-                console.log("coucou nathan")
+               
                 const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
 
                 const datapp = await response.json();
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
-                console.log("datappssssssss", this.datapps);
+              
 
                   if (this.datapps.length === 0 || this.datapps[0].attributes.imagepp.data === null) {
 
@@ -216,7 +216,7 @@ export default {
                     // Faire une requête POST
                        try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
-                        console.log('Form send to strapi:', response.data);
+                       
 
                     } catch (error) {
                         console.error('error the form:', error);
@@ -241,7 +241,7 @@ export default {
                     formData.append("files.imagepp", this.values.singleFile)
                     try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
-                        console.log('Form send to strapi:', response.data);
+                       
 
                     } catch (error) {
                         console.error('error the form:', error);
@@ -262,10 +262,10 @@ export default {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
            
-            console.log("id_user de pp:", id_user);
+           
 
             try {
-                console.log("coucou nathan")
+               
                 const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
 
                 const datapp = await response.json();
@@ -275,7 +275,7 @@ export default {
                 
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
-                console.log("datappsfinal", this.datapps);
+               
                 
 
             } catch (error) {
@@ -293,6 +293,7 @@ export default {
 
                 const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
                 const data = await response.json();
+            
 
                 const posts = data.data
                     .filter(post => post.attributes && post.attributes.id_user == id_user)
@@ -336,13 +337,13 @@ export default {
             try {
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log('id_user:', id_user); // Check if id_user is correct
+              
                 const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`);
                 const dataprofil = await response.json();
                 this.dataprofils = dataprofil;
-                console.log('dataprofils:', this.dataprofils);
+          
                 if (this.dataprofils && this.dataprofils.cert){
-                    console.log("datacertiffinal", this.dataprofils.cert.url);
+                  
                 }
 
             } catch (error) {
@@ -355,11 +356,11 @@ export default {
         async cptabonne() {
 
             try {
-                console.log("coucou cptabonne")
+            
 
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log('id_user:', id_user); // Check if id_user is correct
+             
 
 
 
@@ -369,7 +370,7 @@ export default {
                 });
 
                 const responseData = await response.json();
-                console.log(responseData, "dataGetabonne ");
+              
                 this.nbabonne = responseData.abonne.length;
 
 
@@ -380,12 +381,11 @@ export default {
             }
 
             try {
-                console.log("coucou nathan")
+             
 
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log('id_user:', id_user);
-
+                
 
 
                 const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`, {
@@ -394,7 +394,7 @@ export default {
                 });
 
                 const responseData = await response.json();
-                console.log(responseData, "dataGetabonnement ");
+               
                 this.nbabonnement = responseData.abonnement.length;
 
 
@@ -413,8 +413,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
+               
 
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, {
@@ -428,12 +427,12 @@ export default {
                 let existingLikes = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+                    
                     existingLikes = responseData.data.attributes.like.data || [];
                 }
-                console.log('existingLikes:', existingLikes);
+               
                 const Idexisting = existingLikes.map(user => user.id);
-                console.log('userIds:', Idexisting);
+             
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -446,7 +445,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+              
                 data.isLikedByCurrentUser = !data.isLikedByCurrentUser;
 
 
@@ -468,7 +467,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+              
                     this.isLiked = true;
 
 
@@ -495,8 +494,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
+               
 
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=fav`, {
@@ -510,12 +508,12 @@ export default {
                 let existingFav = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+                 
                     existingFav = responseData.data.attributes.fav.data || [];
                 }
-                console.log('existingFav:', existingFav);
+              
                 const Idexisting = existingFav.map(user => user.id);
-                console.log('userIds:', Idexisting);
+              
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -528,7 +526,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+               
                 data.isFavByCurrentUser = !data.isFavByCurrentUser;
 
 
@@ -550,7 +548,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+                   
 
 
                 } else {
@@ -571,7 +569,7 @@ export default {
 
     mounted() {
         const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-        console.log(apiResponse);
+      
         this.fetchDataprofil();
         this.fetchData();
         this.ppprofilsperso();

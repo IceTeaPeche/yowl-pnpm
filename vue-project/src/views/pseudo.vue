@@ -30,16 +30,16 @@ data() {
 methods: {
   async saveUsername() {
     const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-  console.log(apiResponse);
+  
   
  
   const userId = apiResponse.user.id 
-  console.log(userId, 'userId');
+
     try {
       const response = await axios.put(`http://localhost:1337/api/users/${userId}`, {
         username: this.username,
       });
-      console.log(response.data);
+    
     } catch (error) {
       console.error(error);
     }
@@ -48,11 +48,11 @@ methods: {
 
   async created() {
   const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-  console.log(apiResponse);
+ 
   
   
   const userId = apiResponse.user.id 
-  console.log(userId, 'userId>2');
+  
 
   try {
     const response = await axios.get(`http://localhost:1337/api/users/${userId}`);

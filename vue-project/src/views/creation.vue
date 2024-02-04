@@ -102,11 +102,7 @@ export default {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const username = apiResponse.user.username;
             const id_user = apiResponse.user.id;
-            console.log("Username:", username);
-            console.log("id_user:", id_user);
-
-
-            console.log("values", this.values)
+           
 
             const formData = new FormData()
 
@@ -120,14 +116,14 @@ export default {
 
             }
 
-            console.log("data", data)
+          
 
             formData.append("data", JSON.stringify(data))
             formData.append("files.image", this.values.singleFile)
 
             try {
                 const response = await axios.post('http://localhost:1337/api/posts', formData);
-                console.log('Form send to strapi:', response.data);
+               
                 setTimeout(() => {
                     this.$router.push({ path: `/home` });
                 }, 500);
@@ -147,7 +143,7 @@ export default {
 
     mounted() {
         const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-        console.log("localstorage", apiResponse);
+     
 
 
     },

@@ -146,8 +146,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
+               
 
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, {
@@ -161,12 +160,12 @@ export default {
                 let existingLikes = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+                   
                     existingLikes = responseData.data.attributes.like.data || [];
                 }
-                console.log('existingLikes:', existingLikes);
+              
                 const Idexisting = existingLikes.map(user => user.id);
-                console.log('userIds:', Idexisting);
+               
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -179,7 +178,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+               
                 data.isLikedByCurrentUser = !data.isLikedByCurrentUser;
 
 
@@ -201,7 +200,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+                   
                     this.isLiked = true;
 
 
@@ -228,8 +227,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
+               
 
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=fav`, {
@@ -243,12 +241,12 @@ export default {
                 let existingFav = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+                   
                     existingFav = responseData.data.attributes.fav.data || [];
                 }
-                console.log('existingFav:', existingFav);
+              
                 const Idexisting = existingFav.map(user => user.id);
-                console.log('userIds:', Idexisting);
+               
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -261,7 +259,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+               
                 data.isFavByCurrentUser = !data.isFavByCurrentUser;
 
 
@@ -283,7 +281,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+                 
 
 
                 } else {
@@ -353,7 +351,7 @@ export default {
             try {
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
                 const id_user = apiResponse.user.id;
-                console.log('id_user:', id_user);
+                
                 const response = await fetch(`http://localhost:1337/api/users/${id_user}`);
                 const dataprofil = await response.json();
                 this.dataprofils = dataprofil;
@@ -366,10 +364,10 @@ export default {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
 
-            console.log("id_user de pp:", id_user);
+        
 
             try {
-                console.log("coucou nathan")
+               
                 const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp&_q=${this.search}`);
 
                 const datapp = await response.json();
@@ -379,7 +377,7 @@ export default {
 
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
-                console.log("datappsfinal", this.datapps);
+                
 
             } catch (error) {
                 console.error('error for take a data :', error);
@@ -399,7 +397,7 @@ export default {
 
     mounted() {
         const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-        console.log(apiResponse);
+        
 
         this.fetchData();
         this.fetchDataprofil();

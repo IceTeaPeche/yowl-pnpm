@@ -116,7 +116,7 @@
 export default {
     data() {
         return {
-            // Initialiser buttonState2 et buttonState3 avec les valeurs stockées ou null si non définies
+           
             buttonState2: localStorage.getItem('buttonState2') ? parseInt(localStorage.getItem('buttonState2')) : null,
             buttonState3: localStorage.getItem('buttonState3') ? parseInt(localStorage.getItem('buttonState3')) : null,
         };
@@ -125,22 +125,22 @@ export default {
     methods: {
         setCookieConsent1(stateName, value) {
             this.updateStateAndLocalStorage(stateName, value);
-            this.updateBackend('Statistic', value); // Mettez à jour selon votre clé
+            this.updateBackend('Statistic', value); 
         },
 
         setCookieConsent2(stateName, value) {
             this.updateStateAndLocalStorage(stateName, value);
-            this.updateBackend('Statistic', value); // Mettez à jour selon votre clé
+            this.updateBackend('Statistic', value); 
         },
 
         setCookieConsent3(stateName, value) {
             this.updateStateAndLocalStorage(stateName, value);
-            this.updateBackend('Advertissement', value); // Mettez à jour selon votre clé
+            this.updateBackend('Advertissement', value); 
         },
 
         setCookieConsent4(stateName, value) {
             this.updateStateAndLocalStorage(stateName, value);
-            this.updateBackend('Advertissement', value); // Mettez à jour selon votre clé
+            this.updateBackend('Advertissement', value); 
         },
 
         updateStateAndLocalStorage(stateName, value) {
@@ -149,7 +149,7 @@ export default {
         },
 
         updateBackend(key, value) {
-            // Utilisez key et value pour construire votre payload correctement
+            
             fetch(`http://localhost:1337/api/cookies/19`, {
                 method: 'PUT',
                 headers: {
@@ -160,7 +160,7 @@ export default {
                         [key]: value,
                     }
                 })
-            }).catch(error => console.error('Erreur lors de la mise à jour backend:', error));
+            })
         },
     },
 };

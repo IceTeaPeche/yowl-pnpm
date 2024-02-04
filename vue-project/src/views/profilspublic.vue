@@ -392,7 +392,7 @@ export default {
                     return;
                 }
                 const id_of_account = match[1];
-                console.log('id_of_account:', id_of_account);
+              
 
                 
                 const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
@@ -438,9 +438,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
-
+    
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=like`, {
                     method: 'GET',
@@ -453,12 +451,12 @@ export default {
                 let existingLikes = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+            
                     existingLikes = responseData.data.attributes.like.data || [];
                 }
-                console.log('existingLikes:', existingLikes);
+            
                 const Idexisting = existingLikes.map(user => user.id);
-                console.log('userIds:', Idexisting);
+               
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -471,7 +469,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+
                 data.isLikedByCurrentUser = !data.isLikedByCurrentUser;
 
 
@@ -493,7 +491,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+                   
                     this.isLiked = true;
 
 
@@ -520,8 +518,7 @@ export default {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
                 const userId = JSON.parse(localStorage.getItem('apiResponse')).user.id;
-                console.log('userTokens:', userTokens);
-                console.log('userId:', userId);
+              
 
 
                 const responseGet = await fetch(`http://localhost:1337/api/posts/${data.id}?populate=fav`, {
@@ -535,12 +532,12 @@ export default {
                 let existingFav = [];
                 if (responseGet.ok) {
                     const responseData = await responseGet.json();
-                    console.log('responseData:', responseData);
+                
                     existingFav = responseData.data.attributes.fav.data || [];
                 }
-                console.log('existingFav:', existingFav);
+            
                 const Idexisting = existingFav.map(user => user.id);
-                console.log('userIds:', Idexisting);
+              
                 const idUserNumber = Number(userId);
                 if (Idexisting.includes(idUserNumber)) {
 
@@ -553,7 +550,7 @@ export default {
                 } else {
                     Idexisting.push(idUserNumber);
                 }
-                console.log('userIdsssss:', Idexisting);
+              
                 data.isFavByCurrentUser = !data.isFavByCurrentUser;
 
 
@@ -575,7 +572,7 @@ export default {
                 });
 
                 if (response.ok) {
-                    console.log('Product added to collection successfully');
+                  
 
 
                 } else {
@@ -603,12 +600,12 @@ export default {
                 
                 const response = await fetch(`http://localhost:1337/api/users/${id_user}?populate=*`);
                 const dataprofil = await response.json();
-                console.log("dataprofil", dataprofil);
+              
                  this.dataprofils = dataprofil;
                  if (this.dataprofils && this.dataprofils.cert) {
-                    console.log("datacertiffinal", this.dataprofils.cert.url);
+               
                 }else {
-                    console.log("datacertiffinal", "pas de certif");
+                   
                 }
             } catch (error) {
                 console.error('error for take a data :', error);

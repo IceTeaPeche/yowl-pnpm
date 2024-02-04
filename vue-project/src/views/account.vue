@@ -80,9 +80,9 @@ export default {
 
 
                     .then(response => {
-                        console.log(response);
+                      
                         const status = response.status;
-                        console.log(status)
+                      
                         if (status == 200) {
 
 
@@ -92,8 +92,7 @@ export default {
                         }
                     })
                     .catch(error => {
-                        console.log(error);
-
+                      
                     });
             }
 

@@ -32,16 +32,16 @@
   methods: {
   async saveBio() {
     const apiResponse = JSON.parse(localStorage.getItem('apiResponse')); // Corrected here
-  console.log(apiResponse);
+ 
   
   // Get user ID from apiResponse or local storage
   const userId = apiResponse.user.id 
-  console.log(userId, 'userId');
+
     try {
       const response = await axios.put(`http://localhost:1337/api/users/${userId}`, {
         bio: this.bio,
       });
-      console.log(response.data);
+     
       this.$router.push({ path: `/bio` });
     } catch (error) {
       console.error(error);

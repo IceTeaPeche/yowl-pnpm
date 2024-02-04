@@ -162,10 +162,10 @@ export default {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
 
-            console.log("id_user de pp:", id_user);
+          
 
             try {
-                console.log("coucou nathan")
+               
                 const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
 
                 const datapp = await response.json();
@@ -175,7 +175,7 @@ export default {
 
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
-                console.log("datappsfinal", this.datapps);
+              
 
             } catch (error) {
                 console.error('error for take a data :', error);
@@ -191,7 +191,7 @@ export default {
 
     mounted() {
         const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-        console.log(apiResponse);
+    
         this.ppprofilsperso();
     },
 };
