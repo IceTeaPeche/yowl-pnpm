@@ -40,6 +40,7 @@ Rendez vous sur le localhost port:1337 pour arriver sur la page login. Si vous n
 ## Configuration
 
 Pour accéder au panel de strapi, le mail et le mot de passe admin sont : admin@gmail.com / Admin123
+il est possible que vous ne voyez pas les photos de profils ou les images des posts, c'est normal, vous pouvez modifier directement changer depuis strapi les images afin de les voirs
 
 ## documentation technique
 
