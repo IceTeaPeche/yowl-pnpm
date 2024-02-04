@@ -695,6 +695,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     number: Attribute.String;
     certifurl: Attribute.String;
+    commentaires: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::commentaire.commentaire'
+    >;
+    ppurlimage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -804,12 +810,23 @@ export interface ApiCommentaireCommentaire extends Schema.CollectionType {
     singularName: 'commentaire';
     pluralName: 'commentaires';
     displayName: 'commentaire';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     description: Attribute.Text;
+    post: Attribute.Relation<
+      'api::commentaire.commentaire',
+      'manyToOne',
+      'api::post.post'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::commentaire.commentaire',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1035,6 +1052,12 @@ export interface ApiPostPost extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     link: Attribute.String;
+    commentaires: Attribute.Relation<
+      'api::post.post',
+      'oneToMany',
+      'api::commentaire.commentaire'
+    >;
+    pp: Attribute.Relation<'api::post.post', 'manyToOne', 'api::pp.pp'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
@@ -1063,6 +1086,7 @@ export interface ApiPpPp extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     idpp: Attribute.Integer;
+    posts: Attribute.Relation<'api::pp.pp', 'oneToMany', 'api::post.post'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::pp.pp', 'oneToOne', 'admin::user'> &

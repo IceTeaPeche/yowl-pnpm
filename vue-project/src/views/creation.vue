@@ -26,7 +26,7 @@
 
 
         <button @click="removeImage">
-            <img class="absolute top-0 right-0 mr-[68px] mt-[280px] w-8 h-8 bg-transparent " src="../assets/Group 37.svg"
+            <img class="absolute top-0 right-0 mr-[68px] mt-[335px] w-8 h-8 bg-transparent " src="../assets/Group 37.svg"
                 alt="">
         </button>
     </div>
@@ -45,17 +45,7 @@
         <div class="mr-[65px] mt-[15px] flex">
 
 
-            <button
-                :class="`rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[16px] pt-1 pb-1 border border-red-500 mr-3 ${buttonState === 'Public' ? 'bg-red-500' : 'bg-grey-500'}`"
-                @click="buttonState = 'Public'" type="button">
-                Public
-            </button>
-
-            <button
-                :class="`rounded-2xl text-white cursor-pointer pl-2.5 pr-2.5 text-[16px] pt-1 pb-1 border border-red-500 ml-3 ${buttonState === 'Private' ? 'bg-red-500' : 'bg-grey-500'}`"
-                @click="buttonState = 'Private'" type="button">
-                Private
-            </button>
+          
         </div>
 
     </div>
@@ -125,6 +115,7 @@ export default {
                 const response = await axios.post('http://localhost:1337/api/posts', formData);
                
                 setTimeout(() => {
+                  
                     this.$router.push({ path: `/home` });
                 }, 500);
 
@@ -134,6 +125,9 @@ export default {
 
 
         },
+        zzz() {
+            console.log(this.imageSrc);
+        }
 
         
 
@@ -143,7 +137,7 @@ export default {
 
     mounted() {
         const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-     
+        
 
 
     },

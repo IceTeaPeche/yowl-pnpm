@@ -52,6 +52,18 @@
     },
     "link": {
       "type": "string"
+    },
+    "commentaires": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::commentaire.commentaire",
+      "mappedBy": "post"
+    },
+    "pp": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pp.pp",
+      "inversedBy": "posts"
     }
   }
 }

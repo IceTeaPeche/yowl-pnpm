@@ -19,7 +19,7 @@
                 placeholder="Mail" v-model="email" @input="validateEmail" required>
 
              <input type="text" id="number" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2"
-                    placeholder="your number phone">
+                    placeholder="your number phone" required>
 
 
 

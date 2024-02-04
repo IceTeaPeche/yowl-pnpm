@@ -135,6 +135,15 @@
     },
     "certifurl": {
       "type": "string"
+    },
+    "commentaires": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::commentaire.commentaire",
+      "mappedBy": "users_permissions_user"
+    },
+    "ppurlimage": {
+      "type": "string"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "commentaire",
     "pluralName": "commentaires",
-    "displayName": "commentaire"
+    "displayName": "commentaire",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,18 @@
   "attributes": {
     "description": {
       "type": "text"
+    },
+    "post": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::post.post",
+      "inversedBy": "commentaires"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "commentaires"
     }
   }
 }

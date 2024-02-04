@@ -41,8 +41,8 @@
 
           <div class="ml-4 flex" @click="profilspublic(data)"> 
    <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden bg-gray-200">
-        <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200" v-for="item in datapps" :key="item.id">
-                <img :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
+        <div class="flex items-center justify-center relative border w-full h-full rounded-full overflow-hidden bg-gray-200">
+                <img v-if="data.avatarUrl" :src="`http://localhost:1337${data.avatarUrl}`" alt="" @click="$router.push('/profilsperso')" style="width: 100%; height: 100%;">
             </div>
     </div>
 
@@ -328,14 +328,24 @@ export default {
                 const id_user = apiResponse.user.id;
                 const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
                 const data = await response.json();
-
+                console.log(data);
                 const posts = data.data.map(post => {
                     let localCertifUrl = ''; 
+                    let localavatarUrl = '';
+
+                    
+
                     if (post.attributes.users_permissions_user.data.attributes.certifurl) {
                         localCertifUrl = post.attributes.users_permissions_user.data.attributes.certifurl;
                         
                        
                     }
+
+                    if (post.attributes.users_permissions_user.data.attributes.ppurlimage) {
+                        localavatarUrl = post.attributes.users_permissions_user.data.attributes.ppurlimage;
+                    }
+
+                    console.log(localavatarUrl);
                     
                     const isLikedByCurrentUser = post.attributes.like.data.some(like => like.id === id_user);
                     const isfavByCurrentUser = post.attributes.fav.data.some(fav => fav.id === id_user);
@@ -344,6 +354,7 @@ export default {
                         isLikedByCurrentUser,
                         isfavByCurrentUser,
                         certifurl: localCertifUrl,
+                        avatarUrl: localavatarUrl
                     };
                 });
               
@@ -401,6 +412,8 @@ export default {
 
         
     },
+
+    
 
 
 

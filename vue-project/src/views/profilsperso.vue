@@ -137,6 +137,7 @@ export default {
             datas: [],
             dataprofils: [],
             datapps: [],
+            imageSrc: null,
             posts: [],
             nbabonne: 0,
             nbabonnement: 0,
@@ -149,6 +150,41 @@ export default {
 
 
     methods: {
+
+        async logImageSrc() {
+
+            const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+            const id_user = apiResponse.user.id;
+
+            const response = await fetch(`http://localhost:1337/api/pps?populate=*`);
+
+
+            const datapp22 = await response.json();
+            console.log(datapp22, 'data de logimageSrc');
+
+            let Ppuser1 = datapp22.data.filter(pp => pp.attributes && pp.attributes.users_permissions_user && pp.attributes.users_permissions_user.data && pp.attributes.users_permissions_user.data.id === id_user);
+            console.log(Ppuser1, 'Ppuser1');
+
+            let imageUrls = Ppuser1.map(pp => pp.attributes.imagepp.data.attributes.url);
+            console.log(imageUrls);
+            let ppurlimage2 = imageUrls[0];
+            console.log(ppurlimage2, 'ppurlimage');
+             let foravatar = ("http://localhost:1337" + imageUrls)
+
+            const formData = new FormData()
+
+           const data = {
+
+                ppurlimage: ppurlimage2
+
+            }
+ 
+            const sendppusers = axios.put(`http://localhost:1337/api/users/${id_user}`, data);
+
+    
+            
+            },
+
 
          async deletetweet(data) {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
@@ -190,6 +226,7 @@ export default {
         async onSubmit() {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
+            
 
            
 
@@ -213,7 +250,7 @@ export default {
 
                     formData.append("data", JSON.stringify(data))
                     formData.append("files.imagepp", this.values.singleFile)
-                    // Faire une requête POST
+                   
                        try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
                        
@@ -224,7 +261,7 @@ export default {
                 }
 
                 else {
-                      // Faire une requête DELETE
+                     
                     const deletepp = await axios.delete(`http://localhost:1337/api/pps/${this.datapps[0].id}`, {
                         headers: {
                             Authorization: `Bearer ${apiResponse.jwt}`,
@@ -238,16 +275,21 @@ export default {
                     }
 
                     formData.append("data", JSON.stringify(data))
-                    formData.append("files.imagepp", this.values.singleFile)
+                      formData.append("files.imagepp", this.values.singleFile)
+                      
                     try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
                        
-
+                        this.logImageSrc();
                     } catch (error) {
                         console.error('error the form:', error);
                     }
-                }
-                location.reload();
+                  }
+                
+                setTimeout(function () {
+                    location.reload();
+                }, 800);
+                
             } catch (error) {
                 console.error('error for take a data :', error);
             }
@@ -574,6 +616,7 @@ export default {
         this.fetchData();
         this.ppprofilsperso();
         this.cptabonne();
+        
 
     },
 };

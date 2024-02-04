@@ -62,14 +62,15 @@
 
         <div class="barre bg-gray-500 "></div>
 
-        <div class="ml-4 flex ">
+        <div class="ml-4 flex " @click="profilspublic(data)">
 
 
 
-            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "
-                v-for="item in datapps" :key="item.id">
-                <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
-            </div>
+            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden ">
+
+                    <img v-if="data.avatarUrl" :src="`http://localhost:1337${data.avatarUrl}`" alt=""  style="width: 100%; height: 100%;">
+
+                </div>
 
 
 
@@ -148,6 +149,9 @@ export default {
 
 
     methods: {
+         profilspublic(data) {
+            this.$router.push(`/profilspublic/${data.attributes.id_user}`);
+        },
 
         async deletetweet(data) {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
@@ -299,9 +303,15 @@ export default {
                     .map(post => {
 
                         let localCertifUrl = '';
+                        let localavatarUrl = '';
+
                         if (post.attributes.users_permissions_user.data.attributes.certifurl) {
                             localCertifUrl = post.attributes.users_permissions_user.data.attributes.certifurl;
 
+                        }
+
+                        if (post.attributes.users_permissions_user.data.attributes.ppurlimage) {
+                            localavatarUrl = post.attributes.users_permissions_user.data.attributes.ppurlimage;
                         }
 
                         const isLikedByCurrentUser = post.attributes.like && post.attributes.like.data
@@ -317,6 +327,7 @@ export default {
                             isLikedByCurrentUser,
                             isfavByCurrentUser,
                             certifurl: localCertifUrl,
+                            avatarUrl: localavatarUrl,
                         };
                     });
 
