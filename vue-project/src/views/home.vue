@@ -47,9 +47,14 @@
     </div>
 
             
-
+             <div class="flex">
                 <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
-    
+            
+                <img class="mt-2 bg-transparent h-6 w-6 transform translate-y-2" v-if="data.certifurl"  :src="`http://localhost:1337${data.certifurl}`" alt="">
+
+             
+            </div>
+
             </div>
             
     
@@ -327,22 +332,29 @@ export default {
                 const data = await response.json();
 
                 const posts = data.data.map(post => {
-                   
+                    let localCertifUrl = ''; 
+                    if (post.attributes.users_permissions_user.data.attributes.certifurl) {
+                        localCertifUrl = post.attributes.users_permissions_user.data.attributes.certifurl;
+                        
+                       
+                    }
+                    
                     const isLikedByCurrentUser = post.attributes.like.data.some(like => like.id === id_user);
-                 
-                    const isfavByCurrentUser = post.attributes.fav.data.some(fav => fav.id === id_user); 
+                    const isfavByCurrentUser = post.attributes.fav.data.some(fav => fav.id === id_user);
                     return {
                         ...post,
                         isLikedByCurrentUser,
                         isfavByCurrentUser,
+                        certifurl: localCertifUrl,
                     };
                 });
-
+                console.log('posts:', posts);
                 this.datas = posts;
             } catch (error) {
                 console.error('Erreur lors de la récupération des posts :', error);
             }
         },
+
 
 
 

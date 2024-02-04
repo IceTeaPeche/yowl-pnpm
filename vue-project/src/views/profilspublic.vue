@@ -55,8 +55,11 @@
         <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt="">
     </div>
 
+
+    <div class="flex">
         <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ dataprofils.username }}</h1>
-            
+         <img class="mt-2 bg-transparent h-6 w-6 transform translate-y-2" v-if="data.certifurl"  :src="`http://localhost:1337${data.certifurl}`" alt="">
+            </div>
                 </div>
 
 
@@ -65,7 +68,7 @@
 
                               <h2 class="text-white box-width break-words ml-3.5 mt-0  font-poppins">{{ data.attributes.description }}</h2>
 
-
+                  <a class="text-blue-500 break-words ml-3.5 font-poppins" :href="data.attributes.link" target="_blank">{{ data.attributes.link }}</a>
            <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
                 </div>
     <div class="flex mt-2 mb-3">
@@ -398,6 +401,13 @@ export default {
                 const posts = data.data
                     .filter(post => post.attributes.id_user.toString() === id_of_account) 
                     .map(post => {
+
+                        let localCertifUrl = '';
+                        if (post.attributes.users_permissions_user.data.attributes.certifurl) {
+                            localCertifUrl = post.attributes.users_permissions_user.data.attributes.certifurl;
+
+                        }
+                    
                         const isLikedByCurrentUser = post.attributes.like && post.attributes.like.data
                             ? post.attributes.like.data.some(like => like.id === id_user)
                             : false;
@@ -410,6 +420,7 @@ export default {
                             ...post,
                             isLikedByCurrentUser,
                             isfavByCurrentUser,
+                            certifurl: localCertifUrl,
                         };
                     });
                     

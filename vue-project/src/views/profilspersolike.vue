@@ -3,20 +3,20 @@
         <img src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
     </div>
 
-    <div class="relative flex items-center z-10 justify-center border w-40 h-40 rounded-full overflow-hidden ml-[133px]"  v-for="item in datapps" :key="item.id">
-        
-         <img class="ml-2 z-10" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
+    <div class="relative flex items-center z-10 justify-center border w-40 h-40 rounded-full overflow-hidden ml-[133px]"
+        v-for="item in datapps" :key="item.id">
 
-        
+        <img class="ml-2 z-10" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
+
+
     </div>
-     <div
-                    class="border-2 border-white z-30 rounded-full bg-white w-7 h-7 flex items-center justify-center absolute  left-1/2 
+    <div class="border-2 border-white z-30 rounded-full bg-white w-7 h-7 flex items-center justify-center absolute  left-1/2 
                     mt-[-32px] ml-[37px] mb-2">
-                     <label for="fileUpload" class="bg-transparent">
-                    <img class="bg-transparent z-50" src="../assets/Vector.svg" alt="">
-                    </label>
-                    <input type="file" id="fileUpload" @change="onFileChange" style="display: none;">
-                </div>
+        <label for="fileUpload" class="bg-transparent">
+            <img class="bg-transparent z-50" src="../assets/Vector.svg" alt="">
+        </label>
+        <input type="file" id="fileUpload" @change="onFileChange" style="display: none;">
+    </div>
 
 
 
@@ -24,36 +24,37 @@
     <div class="text-center items-center justify-center flex">
 
         <h1 class="text-white text-2xl mt-1.5 font-bold font-poppins">{{ dataprofils.username }}</h1>
-        
-         
-    <img class="mt-2 bg-transparent" v-if="this.dataprofils && this.dataprofils.cert" :src="`http://localhost:1337${this.dataprofils.cert.url}`" alt="">
+
+
+        <img class="mt-2 bg-transparent" v-if="this.dataprofils && this.dataprofils.cert"
+            :src="`http://localhost:1337${this.dataprofils.cert.url}`" alt="">
     </div>
-   
+
 
     <div class="border border-custom-gray-2 rounded-lg mt-1 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1">
         <h2 class="text-white text-sm bg-transparent text-left font-poppins">{{ dataprofils.bio }} </h2>
     </div>
 
     <div class="flex justify-center items-center text-white mr-2 mt-2 mb-2">
-            <div class="mr-1 flex flex-col items-center">
-                <h1 class=" font-bold font-poppins">{{ nbabonnement }}</h1>
-                <h1 class="font-bold font-poppins">Subscription</h1>
-            </div>
-           <div class="ml-36 flex flex-col items-center">
-                 <h1 class="font-bold font-poppins">{{ nbabonne }}</h1>
-                 <h1 class="font-bold font-poppins">Followers</h1>
-             </div>
+        <div class="mr-1 flex flex-col items-center">
+            <h1 class=" font-bold font-poppins">{{ nbabonnement }}</h1>
+            <h1 class="font-bold font-poppins">Subscription</h1>
         </div>
-
-        <div class="flex justify-center items-center gap-12 mb-1 mt-4">
-
-            <img class="h-7 w-7" src="../assets/grille2.svg" alt="">
-            <img class="h-7 w-7" src="../assets/coeur.svg" alt="" @click="$router.push('/profilspersolike')">
-            <img class="h-6 w-6" src="../assets/favoris.svg" alt="" @click="$router.push('/profilspersofav')">
-
+        <div class="ml-36 flex flex-col items-center">
+            <h1 class="font-bold font-poppins">{{ nbabonne }}</h1>
+            <h1 class="font-bold font-poppins">Followers</h1>
         </div>
+    </div>
 
-        <div class="barre bg-white mb-2 w-11 ml-[120px]"></div>
+    <div class="flex justify-center items-center gap-12 mb-1 mt-4">
+
+        <img class="h-7 w-7" src="../assets/grille2.svg" alt="" @click="$router.push('/profilsperso')">
+        <img class="h-7 w-7" src="../assets/coeur.svg" alt="">
+        <img class="h-6 w-6" src="../assets/favoris.svg" alt="" @click="$router.push('/profilspersofav')">
+
+    </div>
+
+    <div class="barre bg-white mb-2 w-11 ml-[195px]"></div>
 
 
 
@@ -64,26 +65,19 @@
         <div class="ml-4 flex ">
 
 
-                <button @click="deletetweet(data)">
-                    <div
-                        class=" bg-transparent z-30 rounded-full-w-6 h-6 flex items-center justify-center absolute  left-1/2 
-                    mt-[-10px] ml-[170px] mb-2">
-                    
-                        <img class="bg-transparent z-50 w-5  h-5" src="../assets/bin.svg" alt="">
-                    </div>
-                    </button>
 
-
-            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "  v-for="item in datapps" :key="item.id">
+            <div class="mt-2 flex items-center justify-center relative border w-10 h-10 rounded-full overflow-hidden "
+                v-for="item in datapps" :key="item.id">
                 <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`" alt="">
             </div>
 
 
 
             <div class="flex">
-            <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ dataprofils.username }}</h1>
-             <img class="mt-2 bg-transparent h-6 w-6 transform translate-y-2" v-if="data.certifurl"  :src="`http://localhost:1337${data.certifurl}`" alt="">
-                </div>
+                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ data.attributes.pseudo }}</h1>
+                <img class="mt-2 bg-transparent h-6 w-6 transform translate-y-2" v-if="data.certifurl"
+                    :src="`http://localhost:1337${data.certifurl}`" alt="">
+            </div>
         </div>
 
 
@@ -93,7 +87,8 @@
         <div class="box-width ml-10 mt-0">
 
             <h2 class="text-white box-width break-words ml-3.5 mt-0  font-poppins">{{ data.attributes.description }}</h2>
-            <a class="text-blue-500 break-words ml-3.5 font-poppins" :href="data.attributes.link" target="_blank">{{ data.attributes.link }}</a>
+            <a class="text-blue-500 break-words ml-3.5 font-poppins" :href="data.attributes.link" target="_blank">{{
+                data.attributes.link }}</a>
             <img class="ml-2"
                 v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes"
                 :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`" alt="">
@@ -102,21 +97,25 @@
 
 
 
-       <div class="flex mt-2 mb-3">
-             <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)">
-            <img v-if="data.isLikedByCurrentUser" src="../assets/coeurouge.svg" alt="Cœur rouge" class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
-            <img v-else src="../assets/coeur.svg" alt="Cœur blanc" class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
-        </div>
-    
-            <div class="w-20 h-7 border border-white rounded-3xl ml-7 flex" >
+        <div class="flex mt-2 mb-3">
+            <div class="w-10 h-7 border border-white rounded-3xl ml-14 flex" @click="addLike(data)">
+                <img v-if="data.isLikedByCurrentUser" src="../assets/coeurouge.svg" alt="Cœur rouge"
+                    class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
+                <img v-else src="../assets/coeur.svg" alt="Cœur blanc"
+                    class="rounded-9xl ml-2 h-5 w-5 transform translate-y-1">
+            </div>
+
+            <div class="w-20 h-7 border border-white rounded-3xl ml-7 flex">
                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-0.5" src="../assets/comment.svg" alt="">
                 <h2 class="text-white rounded-3xl margin-top ml-3 mr-2 text-sm">19k</h2>
             </div>
-  
+
             <div class="w-10 h-7 border border-white rounded-3xl ml-10 flex" @click="addFav(data)">
-        
-                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1 pl-[2px]" v-if="data.isfavByCurrentUser" src="../assets/favrouge.svg" alt="Favori" >
-                 <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" v-else src="../assets/favoris.svg" alt="Pas en favori" >
+
+                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1 pl-[2px]" v-if="data.isfavByCurrentUser"
+                    src="../assets/favrouge.svg" alt="Favori">
+                <img class="rounded-9xl mb-1.5 ml-2 h-5 w-5 transform translate-y-1" v-else src="../assets/favoris.svg"
+                    alt="Pas en favori">
             </div>
 
 
@@ -141,7 +140,7 @@ export default {
             nbabonne: 0,
             nbabonnement: 0,
             data: null,
-             values: {
+            values: {
                 singleFile: null
             }
         };
@@ -150,7 +149,7 @@ export default {
 
     methods: {
 
-         async deletetweet(data) {
+        async deletetweet(data) {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
             console.log("id_user de pp:", data.id);
@@ -166,8 +165,8 @@ export default {
                     if (status == 200) {
                         location.reload();
 
-                    ({
-            
+                        ({
+
                         });
                     }
                 })
@@ -183,7 +182,7 @@ export default {
             const file = e.target.files[0];
             this.imageSrc = URL.createObjectURL(file);
             this.values.singleFile = file;
-             this.onSubmit();
+            this.onSubmit();
         },
 
 
@@ -202,7 +201,7 @@ export default {
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
                 console.log("datappssssssss", this.datapps);
 
-                  if (this.datapps.length === 0 || this.datapps[0].attributes.imagepp.data === null) {
+                if (this.datapps.length === 0 || this.datapps[0].attributes.imagepp.data === null) {
 
                     const formData = new FormData()
 
@@ -214,7 +213,7 @@ export default {
                     formData.append("data", JSON.stringify(data))
                     formData.append("files.imagepp", this.values.singleFile)
                     // Faire une requête POST
-                       try {
+                    try {
                         const response = await axios.post('http://localhost:1337/api/pps', formData);
                         console.log('Form send to strapi:', response.data);
 
@@ -224,7 +223,7 @@ export default {
                 }
 
                 else {
-                      // Faire une requête DELETE
+                    // Faire une requête DELETE
                     const deletepp = await axios.delete(`http://localhost:1337/api/pps/${this.datapps[0].id}`, {
                         headers: {
                             Authorization: `Bearer ${apiResponse.jwt}`,
@@ -251,17 +250,17 @@ export default {
             } catch (error) {
                 console.error('error for take a data :', error);
             }
-             
+
         },
 
 
 
 
 
-         async ppprofilsperso() {
+        async ppprofilsperso() {
             const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
             const id_user = apiResponse.user.id;
-           
+
             console.log("id_user de pp:", id_user);
 
             try {
@@ -269,14 +268,14 @@ export default {
                 const response = await fetch(`http://localhost:1337/api/pps?populate=imagepp`);
 
                 const datapp = await response.json();
-             
+
 
                 const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-                
+
 
                 this.datapps = datapp.data.filter(item => item.attributes.idpp == id_user);
                 console.log("datappsfinal", this.datapps);
-                
+
 
             } catch (error) {
                 console.error('error for take a data :', error);
@@ -287,18 +286,19 @@ export default {
 
         async fetchData() {
             try {
-               
-                  const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
-                  const id_user = apiResponse.user.id; 
 
-                const response = await fetch(`http://localhost:1337/api/posts?populate=*&sort=createdAt:DESC`);
+                const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
+                const id_user = apiResponse.user.id;
+
+                const response = await fetch(`http://localhost:1337/api/posts?populate=*&filters[$and][0][like][id][$eq]=${id_user}`);
                 const data = await response.json();
+                console.log('data:', data);
 
                 const posts = data.data
-                    .filter(post => post.attributes && post.attributes.id_user == id_user)
+                    
                     .map(post => {
 
-                         let localCertifUrl = '';
+                        let localCertifUrl = '';
                         if (post.attributes.users_permissions_user.data.attributes.certifurl) {
                             localCertifUrl = post.attributes.users_permissions_user.data.attributes.certifurl;
 
@@ -322,6 +322,7 @@ export default {
 
 
                 this.datas = posts;
+                console.log('datas:', this.datas);
             } catch (error) {
                 console.error('Erreur lors de la récupération des posts :', error);
             }
@@ -341,7 +342,7 @@ export default {
                 const dataprofil = await response.json();
                 this.dataprofils = dataprofil;
                 console.log('dataprofils:', this.dataprofils);
-                if (this.dataprofils && this.dataprofils.cert){
+                if (this.dataprofils && this.dataprofils.cert) {
                     console.log("datacertiffinal", this.dataprofils.cert.url);
                 }
 
@@ -351,7 +352,7 @@ export default {
         },
 
 
-        
+
         async cptabonne() {
 
             try {
@@ -408,7 +409,7 @@ export default {
         },
 
 
-         async addLike(data) {
+        async addLike(data) {
             try {
 
                 const userTokens = JSON.parse(localStorage.getItem('apiResponse')).jwt;
@@ -596,11 +597,10 @@ export default {
 
 .box-width {
     width: 350px;
-    
+
 }
 
 
 .move-right {
     transform: translateX(-44px);
-}
-</style>
+}</style>

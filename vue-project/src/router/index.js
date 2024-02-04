@@ -24,6 +24,8 @@ import CGU from '@/views/CGU.vue'
 import bio from '@/views/bio.vue'
 import changebio from '@/views/changebio.vue'
 import certification from '@/views/certification.vue';
+import profilspersofav from '../views/profilspersofav.vue'
+import profilspersolike from '../views/profilspersolike.vue'
 
 
 const router = createRouter({
@@ -177,6 +179,16 @@ const router = createRouter({
       path: '/certification',
       name: 'certification',
       component: certification
+    },
+    {
+      path: '/profilspersofav',
+      name: 'profilspersofav',
+      component: profilspersofav
+    },
+    {
+      path: '/profilspersolike',
+      name: 'profilspersolike',
+      component: profilspersolike
     }
     ]
 })

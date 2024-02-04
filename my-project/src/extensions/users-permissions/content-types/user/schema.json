@@ -132,6 +132,9 @@
     },
     "number": {
       "type": "string"
+    },
+    "certifurl": {
+      "type": "string"
     }
   }
 }
