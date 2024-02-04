@@ -13,7 +13,7 @@ Ce projet à pour but de créer un réseau social et d'intégrer le privacy by d
 Node.js
 npm (Node Package Manager)
 
-## nstallation Strapi
+## Installation Strapi
 
  ouvrez le terminal dans le dossier my-project dans visual studio code et tapez la commande suivante :
 
