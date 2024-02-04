@@ -14,11 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-<<<<<<< Updated upstream
-    "x-generation-date": "2024-02-04T20:52:27.344Z"
-=======
-    "x-generation-date": "2024-02-04T20:39:54.489Z"
->>>>>>> Stashed changes
+    "x-generation-date": "2024-02-04T21:07:36.719Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
