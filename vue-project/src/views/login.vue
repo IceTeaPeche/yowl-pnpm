@@ -24,6 +24,9 @@
 
                         
                         </div>
+                        <div class="text-white text-[8px] mt-[-25px] ml-10 mr-10 text-center">If you have forgot your password, please send a mail to Evann7455@gmail.com with your pseudo, mail, date of birth and your phone numbers</div>
+
+
                          <div id="erreur"><p id="erreurlogin" class="erreurlogin text-white absolute ml-8 mt-[-23px]"> </p></div>
 
                         <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto font-bold mt-10 pt-2 pb-2"
@@ -31,29 +34,7 @@
                 </form>
 
 
-                  <div class="flex items-center justify-between mt-6 mb-6">
-                
-                        <div class="barre bg-gray-100 w-20 mr-2 rounded"></div>
-
-                <span class="text-white">or</span>
-                
-                        <div class="barre bg-gray-100 w-20 ml-2 rounded"></div>
-
-                 </div>
-
-
-        <button>
-                <div class="w-[210px] h-8 px-5 py-1 rounded-[10px] border border-zinc-300 flex-col justify-start items-start gap-2.5 inline-flex">
-        <div class="justify-start items-center gap-2.5 inline-flex">
-        
-
-        <img class="ml-3.5"  src="../assets/icons8-google 1.svg" alt="">
-
-        <div class="text-white text-xs font-medium font-['Poppins']">Login with Google</div>
-        </div>
-        </div>
-        </button>
-
+                 
         <div class="mt-14 ">
                                 <a href="/register" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">Not Registered ? Create an account!</a>
                         </div>

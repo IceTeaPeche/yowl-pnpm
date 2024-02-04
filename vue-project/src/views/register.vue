@@ -18,6 +18,9 @@
             <input type="text" id="email" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2"
                 placeholder="Mail" v-model="email" @input="validateEmail" required>
 
+             <input type="text" id="number" class="px-2.5 border border-gray-300 rounded-2xl text-white pt-2 pb-2"
+                    placeholder="your number phone">
+
 
 
 
@@ -81,7 +84,7 @@
             </div>
 
             <p class="text-white absolute bg-transparent mt-[186px] text-[10px] ml-3" v-if="emailError">{{ emailError }}</p>
-            <p class="text-white absolute bg-transparent mt-[255px] text-[10px] ml-3" v-if="passwordError">{{
+            <p class="text-white absolute bg-transparent mt-[325px] text-[10px] ml-3" v-if="passwordError">{{
                 passwordError }}</p>
             <div class="text-red-500 absolute bg-transparent mt-[365px] text-[16px] ml-1">{{ errorMessage }}</div>
 
@@ -95,27 +98,7 @@
         </form>
 
 
-        <div class="flex items-center justify-between mt-6 mb-6">
 
-            <div class="barre bg-gray-100 w-20 mr-2 rounded"></div>
-
-            <span class="text-white">or</span>
-
-            <div class="barre bg-gray-100 w-20 ml-2 rounded"></div>
-
-        </div>
-
-
-        <button
-            class="w-[210px] h-8 px-5 py-1 rounded-[10px] border border-zinc-300 flex-col justify-start items-start gap-2.5 inline-flex">
-            <div class="justify-start items-center gap-2.5 inline-flex">
-
-
-                <img class="ml-3.5" src="../assets/icons8-google 1.svg" alt="">
-
-                <div class="text-white text-xs font-medium font-['Poppins']">Register with Google</div>
-            </div>
-        </button>
 
         <div class="mt-14 ">
             <a href="/login" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">You have account ?
@@ -224,6 +207,7 @@ export default {
             const password = document.getElementById('password').value;
             const username = document.getElementById('username').value;
             const birthday = document.getElementById('birthday').value;
+            const number = document.getElementById('number').value;
             const confirmedpassword = document.getElementById('confirmedpassword').value;
 
             const age = this.calculateAge(birthday);
@@ -247,7 +231,7 @@ export default {
                     password: password,
                     email: email,
                     birthday: birthday,
-                  
+                    number: number,
                 })
             })
                 .then(response => {

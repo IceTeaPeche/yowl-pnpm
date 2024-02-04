@@ -14,7 +14,7 @@
             type="submit">Change your Pseudo</button>
     </div>
 
-    <!-- Rest of your template -->
+
 </template>
 
 <script>
@@ -29,10 +29,10 @@ data() {
 
 methods: {
   async saveUsername() {
-    const apiResponse = JSON.parse(localStorage.getItem('apiResponse')); // Corrected here
+    const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
   console.log(apiResponse);
   
-  // Get user ID from apiResponse or local storage
+ 
   const userId = apiResponse.user.id 
   console.log(userId, 'userId');
     try {
@@ -47,10 +47,10 @@ methods: {
 
 
   async created() {
-  const apiResponse = JSON.parse(localStorage.getItem('apiResponse')); // Corrected here
+  const apiResponse = JSON.parse(localStorage.getItem('apiResponse'));
   console.log(apiResponse);
   
-  // Get user ID from apiResponse or local storage
+  
   const userId = apiResponse.user.id 
   console.log(userId, 'userId>2');
 
@@ -70,5 +70,5 @@ mounted() {
 </script>
 
 <style scoped>
-/* Your styles here */
+
 </style>
