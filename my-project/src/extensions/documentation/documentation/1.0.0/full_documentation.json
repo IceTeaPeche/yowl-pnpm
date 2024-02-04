@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-02-04T17:08:53.973Z"
+    "x-generation-date": "2024-02-04T19:03:08.908Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3016,7 +3016,7 @@
               "data": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/CookieCategory"
+                  "$ref": "#/components/schemas/CookieCategoryListResponseDataItemLocalized"
                 }
               }
             }
@@ -3544,7 +3544,7 @@
               "data": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/CookiePopup"
+                  "$ref": "#/components/schemas/CookiePopupListResponseDataItemLocalized"
                 }
               }
             }
