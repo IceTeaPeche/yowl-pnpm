@@ -34,7 +34,7 @@
          <body>
             
              <div class="haut"> </div>
-             <div class="ml-2"><p class="text-white text-xl font-bold mb-2">Notifications : </p></div>
+             <div class="ml-2"><p class="text-white text-xl font-bold mb-2 font-poppins">Notifications : </p></div>
         
             <section>
 
@@ -44,10 +44,10 @@
                 
                     <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
-                    <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
+                    <h1 class="text-white mt-2.5 ml-1 font-bold text-m font-poppins">Squeezie</h1>
 
 
-                    <p class="text-gray-400 mt-2.5 ml-1">has started to follow you</p>
+                    <p class="text-gray-400 mt-2.5 ml-1 font-poppins">has started to follow you</p>
             
                 </div>
 
@@ -65,10 +65,10 @@
                 
                         <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
-                        <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
+                        <h1 class="text-white mt-2.5 ml-1 font-bold text-m font-poppins">Squeezie</h1>
 
 
-                        <p class="text-gray-400 mt-2.5 ml-1">like yout post</p>
+                        <p class="text-gray-400 mt-2.5 ml-1 font-poppins">like yout post</p>
             
                     </div>
 
@@ -85,10 +85,10 @@
                 
                             <img width="30" height="32" class="mt-1.5" src="../assets/Ellipse 3.png" alt="">
 
-                            <h1 class="text-white mt-2.5 ml-1 font-bold text-m">Squeezie</h1>
+                            <h1 class="text-white mt-2.5 ml-1 font-bold text-m font-poppins">Squeezie</h1>
 
 
-                            <p class="text-gray-400 mt-2.5 ml-1">commented " I like your post "</p>
+                            <p class="text-gray-400 mt-2.5 ml-1 font-poppins">commented " I like your post "</p>
             
                         </div>
 

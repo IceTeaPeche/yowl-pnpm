@@ -3,16 +3,16 @@
 
         <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt=""
             @click="$router.push('/parameters')">
-        <h1 class="text-white text-[25px] ml-28 font-bold ">About us</h1>
+        <h1 class="text-white text-[25px] ml-28 font-bold font-poppins">About us</h1>
 
     </div>
 
-    <div class="text-center text-white mt-5 mb-8">
+    <div class="text-center text-white mt-5 mb-8 font-poppins" >
             Last Update 23/01/2024
     </div>
 
     <div class="text-center ml-1.5 mr-1.5">
-        <div class="text-white mb-3  ">
+        <div class="text-white mb-3  font-poppins">
 
           
     Welcome to Inde, the independent social network that celebrates freedom and individuality.

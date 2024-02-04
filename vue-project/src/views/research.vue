@@ -34,14 +34,14 @@
 
             
 
-                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
+                    <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
                 </div>
             
     
 
                 <div class="box-width ml-10 mt-0" > 
 
-                    <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
+                    <h2 class="text-white box-width break-words ml-3.5 mt-0 font-poppins ">{{ data.attributes.description }}</h2>
 
                     <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
 

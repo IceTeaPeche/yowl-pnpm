@@ -4,17 +4,17 @@
         <div class="flex mt-8" >
 
             <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/cookie')">
-            <h1 class="text-white text-[25px] ml-20 font-bold ">Politicy privacy</h1>
+            <h1 class="text-white text-[25px] ml-20 font-bold font-poppins">Politicy privacy</h1>
 
         </div>
 
-        <div class="text-center text-white mt-5 mb-8">
+        <div class="text-center text-white mt-5 mb-8 font-poppins">
               Last Update 23/01/2024
         </div>
 
-    <div class="text-center ml-1.5 mr-1.5">
-        <div class="text-white mb-3  ">
-            <div class="font-bold mb-1">1. Introduction </div>
+    <div class="text-center ml-1.5 mr-1.5 font-poppins">
+        <div class="text-white mb-3 font-poppins ">
+            <div class="font-bold mb-1 font-poppins">1. Introduction </div>
      
     INDE is committed to protecting the privacy and personal information of our users. This privacy policy explains how we collect, use and share personal data.
 

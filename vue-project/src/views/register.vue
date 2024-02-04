@@ -61,12 +61,12 @@
 
 
             <div class="flex transform translate-y-2.5">
-                <h2 class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 ">
+                <h2 class="px-2.5 text-white flex-grow pt-2 pb-2 text-[10px] pr-0 font-poppins">
                     do you accept cookies ?</h2>
 
                 <div class="mr-[51px] mt-[2px] flex">
                     <button
-                        class="border-none rounded-2xl bg-red-500 text-white cursor-pointer pl-1.5 pr-1.5 text-[8px] mr-4 pt-1 pb-1"
+                        class="border-none rounded-2xl bg-red-500 text-white cursor-pointer font-poppins pl-1.5 pr-1.5 text-[8px] mr-4 pt-1 pb-1"
                         type="button" @click="$router.push('/cookie')">Personalize</button>
                 
                 <div  class="flex">
@@ -93,7 +93,7 @@
 
 
             <button
-                class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto transform transition-transform duration-300 ease-in-out font-bold mt-10 pt-2 pb-2"
+                class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-3/5 mx-auto transform transition-transform duration-300 ease-in-out font-bold mt-10 pt-2 pb-2 font-poppins"
                 type="button" v-on:click="registerUser">Register</button>
         </form>
 
@@ -101,7 +101,7 @@
 
 
         <div class="mt-14 ">
-            <a href="/login" class="text-sm text-white no-underline hover:underline whitespace-nowrap  ">You have account ?
+            <a href="/login" class="text-sm text-white no-underline hover:underline whitespace-nowrap  font-poppins">You have account ?
                 please click here</a>
         </div>
 

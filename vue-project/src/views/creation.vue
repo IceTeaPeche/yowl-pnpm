@@ -2,14 +2,14 @@
     <div class="flex mt-8">
 
         <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" @click="$router.push('/home')">
-        <h1 class="text-white text-[25px] ml-[114px] font-bold ">New Post</h1>
+        <h1 class="text-white text-[25px] ml-[114px] font-bold font-poppins">New Post</h1>
 
     </div>
 
 
     <form @submit.prevent="onSubmit" class="flex float-right mb-3  mr-4">
         <button
-            class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[100px] mx-auto font-bold mt-5 pt-2 pb-2 text-[15px]"
+            class="px-2.5 border-none rounded-full bg-red-500 font-poppins text-white cursor-pointer w-[100px] mx-auto font-bold mt-5 pt-2 pb-2 text-[15px]"
             type="submit">Post</button>
     </form>
 

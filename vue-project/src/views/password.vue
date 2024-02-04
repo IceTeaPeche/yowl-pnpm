@@ -3,7 +3,7 @@
        <div class="flex mt-8 mb-24" @click="$router.push('/security')" >
 
                         <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" >
-                        <h1 class="text-white text-[25px] ml-[114px] font-bold ">Password</h1>
+                        <h1 class="text-white text-[25px] ml-[114px] font-bold font-poppins">Password</h1>
 
                     </div>
 
@@ -34,10 +34,10 @@
                 </div>
             </div>
 
-               <div class="text-white text-[10px] ml-10 mr-10 text-center">Never disclose the password of this email address to a third party, this could risk hacking your INDE account!</div>
+               <div class="text-white text-[10px] ml-10 mr-10 text-center font-poppins">Never disclose the password of this email address to a third party, this could risk hacking your INDE account!</div>
 
                <div class="flex  mb-3  ">
-                 <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-[120px] mx-auto font-bold mt-5 pt-2 pb-2 text-[18px]  "
+                 <button class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer font-poppins w-[120px] mx-auto font-bold mt-5 pt-2 pb-2 text-[18px]  "
                                             type="button" @click="passwordchange()" >Save</button>
             </div>
 

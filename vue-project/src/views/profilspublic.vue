@@ -13,21 +13,21 @@
     
     <div class="text-center items-center justify-center flex">
 
-  <h1 class="text-white text-2xl mt-1.5 font-bold ">{{ dataprofils.username }}</h1>
+  <h1 class="text-white text-2xl mt-1.5 font-bold font-poppins">{{ dataprofils.username }}</h1>
    <img class="mt-2 bg-transparent" v-if="this.dataprofils && this.dataprofils.cert" :src="`http://localhost:1337${this.dataprofils.cert.url}`" alt="">
     </div>
     <div class="border border-custom-gray-2 rounded-lg mt-1 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1">
     
- <h2 class="text-white text-sm bg-transparent text-left">{{dataprofils.bio}} </h2>
+ <h2 class="text-white text-sm bg-transparent text-left font-poppins">{{dataprofils.bio}} </h2>
     </div>
     <div class="flex justify-center items-center text-white mr-2 mt-2 mb-2">
         <div class="mr-1 flex flex-col items-center">
-            <h1 class=" font-bold">{{nbabonnement}}</h1>
-            <h1 class="font-bold">Subscription</h1>
+            <h1 class=" font-bold font-poppins">{{nbabonnement}}</h1>
+            <h1 class="font-bold font-poppins">Subscription</h1>
         </div>
        <div class="ml-36 flex flex-col items-center">
-             <h1 class="font-bold">{{ nbabonne }}</h1>
-             <h1 class="font-bold">Followers</h1>
+             <h1 class="font-bold font-poppins">{{ nbabonne }}</h1>
+             <h1 class="font-bold font-poppins">Followers</h1>
          </div>
     </div>
 
@@ -36,11 +36,11 @@
 
 
       <div class="flex justify-center mb-3" v-if="isUserInResponseData">
-                  <button  @click="abonne()" class="px-2.5 border-none rounded-full bg-gray-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Followers</button>
+                  <button  @click="abonne()" class="px-2.5 font-poppins border-none rounded-full bg-gray-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Followers</button>
              </div>
 
     <div class="flex justify-center mb-3"  v-else >
-            <button  @click="abonne()" class="px-2.5 border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Follow</button>
+            <button  @click="abonne()" class="px-2.5 font-poppins border-none rounded-full bg-red-500 text-white cursor-pointer w-28 mx-auto font-bold mt-2 pt-2 pb-2 text-xl  " type="submit">Follow</button>
         </div>
 </div>
 
@@ -55,7 +55,7 @@
         <img class="ml-2" :src="`http://localhost:1337${item.attributes.imagepp.data.attributes.url}`"  alt="">
     </div>
 
-        <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ dataprofils.username }}</h1>
+        <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ dataprofils.username }}</h1>
             
                 </div>
 
@@ -63,7 +63,7 @@
                <div class="box-width ml-10 mt-0" > 
 
 
-                              <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
+                              <h2 class="text-white box-width break-words ml-3.5 mt-0  font-poppins">{{ data.attributes.description }}</h2>
 
 
            <img class="ml-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">

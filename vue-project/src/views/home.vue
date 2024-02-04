@@ -1,6 +1,6 @@
 <template>
 
-    <header class="fixed top-0 w-full z-20">
+    <header class="fixed top-0 w-full z-20 ">
 
             <nav class="flex items-center justify-between mt-8 ">
 
@@ -48,17 +48,17 @@
 
             
 
-                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
+                <h1 class="text-white mt-3.5 ml-1 font-bold text-xl font-poppins">{{ data.attributes.users_permissions_user.data.attributes.username }}</h1>
     
             </div>
             
     
 
-            <div class="box-width ml-10 mt-0" > 
+            <div class="box-width ml-10 mt-0 font-poppins" > 
 
-                <h2 class="text-white box-width break-words ml-3.5 mt-0  ">{{ data.attributes.description }}</h2>
+                <h2 class="text-white box-width break-words ml-3.5 mt-0 font-poppins ">{{ data.attributes.description }}</h2>
 
-                <a class="text-blue-500 break-words ml-3.5 " :href="data.attributes.link" target="_blank">{{ data.attributes.link }}</a>
+                <a class="text-blue-500 break-words ml-3.5 font-poppins" :href="data.attributes.link" target="_blank">{{ data.attributes.link }}</a>
 
                 <img class="ml-2 mt-2" v-if="data.attributes.image && data.attributes.image.data && data.attributes.image.data.attributes" :src="`http://localhost:1337${data.attributes.image.data.attributes.url}`"  alt="">
 

@@ -4,13 +4,13 @@
           <div class="flex mt-8 mb-10" @click="$router.push('/parameters')" >
 
                     <img class="ml-6 " src="../assets/Arrow_Left_MD.svg" alt="" >
-                    <h1 class="text-white text-[25px] ml-[114px] font-bold ">Security</h1>
+                    <h1 class="text-white text-[25px] ml-[114px] font-bold font-poppins ">Security</h1>
 
                 </div>
 
 
            <button class="mb-6" @click="$router.push('/password')" > <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-            <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Change password</div>
+            <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent font-poppins">Change password</div>
                 <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                         <div class="bg-transparent">
@@ -21,7 +21,7 @@
         </button>
 
          <button class="mb-6" @click="$router.push('/mail')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-                <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Email</div>
+                <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent font-poppins">Email</div>
                     <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                             <div class="bg-transparent">
@@ -32,7 +32,7 @@
             </button>
             
          <button class="mb-6" @click="$router.push('/account')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Account</div>
+                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent font-poppins">Account</div>
                         <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                                 <div class="bg-transparent">
@@ -43,7 +43,7 @@
                 </button>
     
                  <button class="mb-6" @click="$router.push('/pseudo')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Pseudo</div>
+                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent font-poppins">Pseudo</div>
                         <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                                 <div class="bg-transparent">
@@ -54,7 +54,7 @@
                 </button>
 
                 <button class="mb-6" @click="$router.push('/bio')"> <div class="w-[374px] h-[84px] pl-[118px] py-2.5 bg-custom-gray rounded-[20px] justify-between items-center inline-flex ml-7 ">
-                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent">Bio</div>
+                    <div class="w-[108px] text-center text-white text-xl font-bold bg-transparent font-poppins">Bio</div>
                         <div class="w-[53px] h-[83px] p-2.5 bg-red-500 rounded-tr-[20px] rounded-br-[20px] justify-center items-center gap-[23.18px] flex">
             
                                 <div class="bg-transparent">

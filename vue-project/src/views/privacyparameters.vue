@@ -12,7 +12,7 @@
               Last Update 23/01/2024
         </div>
 
-    <div class="text-center ml-1.5 mr-1.5">
+    <div class="text-center ml-1.5 mr-1.5 font-poppins">
         <div class="text-white mb-3  ">
             <div class="font-bold mb-1">1. Introduction </div>
      

@@ -7,6 +7,10 @@ module.exports = {
       colors: {
         'custom-gray': '#1D1D1B',
         'custom-gray-2': '#494949',
+        
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
       },
     },
   },
