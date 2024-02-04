@@ -118,8 +118,6 @@
             </div>
 
 
-        </div>
-
     </article>
 </template>
 
