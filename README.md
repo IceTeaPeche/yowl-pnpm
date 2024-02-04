@@ -35,7 +35,7 @@ Vous pouvez accédez à l'interface au localhost:5173/register où est situé le
 
 ## Comment fonctionne l'application
  
-Rendez vous sur le localhost port:1337 pour arriver sur la page login. Si vous n'avez pas de compte vous pouvez en creer un. Ensuite vous arrivez sur la page home, vous pourrez poster des photos, un lien et du textes qui seront publier du plus récent au plus ancien dans la page d'accueil. Un système de like, abbonement et commentaires sera disponible. Bien sûr un profil qui sera personnalisable avec un changement de photo de profil, la biographie. on retrouve auusi des paramètres avec les conditions d'utilisations ou encore les cookies. Le mot de passe sera aussi changeable dans les paramètres. On espère que cette application vous plaiera.
+Rendez vous sur le localhost port:1337 pour arriver sur la page login. Si vous n'avez pas de compte vous pouvez en creer un. Ensuite vous arrivez sur la page home, vous pourrez poster des photos, un lien et du textes qui seront publier du plus récent au plus ancien dans la page d'accueil. Un système de like, abbonement et commentaires sera disponible. Bien sûr un profil qui sera personnalisable avec un changement de photo de profil, la biographie. on retrouve auusi des paramètres avec les conditions d'utilisations ou encore les cookies. Le mot de passe sera aussi changeable en envoyant un mail. On espère que cette application vous plaiera.
 
 ## Configuration
 
